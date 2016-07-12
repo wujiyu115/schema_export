@@ -39,6 +39,13 @@ class DictClient(object):
 		self.ignore = DictClient.conn(self)['ignore_db']
 
 
+	##
+	## @brief      { 连接 }
+	##
+	## @param      self  The object
+	##
+	## @return     { 返回结果集 }
+	##
 	def conn(self):
 		settings = OPTIONS.get(self.arg)
 		result = {}
@@ -64,6 +71,13 @@ class DictClient(object):
 			result["ignore_db"] = ignore_db
 		return result
 
+	##
+	## @brief      { 指针 }
+	##
+	## @param      self  The object
+	##
+	## @return     { description_of_the_return_value }
+	##
 	def cursor(self):
 		return self.con.cursor()
 

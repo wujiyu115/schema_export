@@ -1,11 +1,10 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
+# @Author: wujiyu115
+# @Date:   2016-07-12 18:56:20
+# @Last Modified by:   wujiyu115
+# @Last Modified time: 2016-07-12 19:50:54
 
-'''
-File: export_excel.py
-Author: tdoly
-Description: export excel
-'''
+
 from excel_util import ExcelNoTemplateUtils
 
 from docx import Document
