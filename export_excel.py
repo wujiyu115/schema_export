@@ -7,41 +7,14 @@ Author: tdoly
 Description: export excel
 '''
 from excel_util import ExcelNoTemplateUtils
-from client import DictClient
 
-class DbData(object):
-	def __init__(self, dbname="localhost"):
-		self.client = DictClient(dbname)
+from docx import Document
+from docx.shared import Inches
+from db_info import MySqlDbData
 
-	def getDB(self):
-		result = [database[0] for database in self.client.execute("show databases")]
-		if result:
-			for ignore in ["information_schema", "mysql", "performance_schema"]:
-				result.remove(ignore)
-		return result
+c = MySqlDbData()
 
-	def getTable(self, database):
-		if database:
-			self.client.execute("use %s" % database)
-			return [tables[0] for tables in self.client.execute("show tables")]
-
-	def getColumn(self, table):
-		if table:
-			return [list(column) for column in self.client.execute("desc %s" % table)]
-
-	def getDatas(self, sheet):
-		datas = {}
-		if sheet:
-			tables = self.getTable(sheet)
-			if tables:
-				for table in tables:
-					columns = self.getColumn(table)
-					datas[table] = columns
-		return datas
-
-c = DbData()
-
-def export():
+def export_xls():
 	entu = ExcelNoTemplateUtils('dbdict.xls')
 	heading_xf = entu.ezxf('font: bold on; align: wrap off, vert centre, horiz center')
 	title_xf = entu.ezxf('font: bold on, color blue; align: wrap on, vert bottom, horiz center; border: left thin, right thin, top thin, bottom thin')
@@ -57,7 +30,35 @@ def export():
 
 	entu.save()
 
+def export_doc():
+
+	document = Document()
+	document.add_heading('database  schema',0)
+	# p = document.add_paragraph('export database schema')
+
+	sheet="bee_char"
+	recordset =c.getDatas(sheet)
+	for db_name,items in recordset.iteritems():
+		document.add_paragraph()
+		document.add_paragraph(
+		   db_name, style='Caption'
+		)
+		headings = ['Field', 'Type', 'Null', 'Key', 'Default', 'Extra']
+		head_len = len(headings)
+		table = document.add_table(rows=1, cols=head_len)
+		table.style = 'Light Grid'
+		hdr_cells = table.rows[0].cells
+		for x in xrange(0,head_len):
+			hdr_cells[x].text = headings[x]
+		for item in items:
+			row_cells = table.add_row().cells
+			for x in xrange(0,head_len):
+				row_cells[x].text = str(item[x])
+
+	document.save('database.docx')
+
 if __name__ == '__main__':
 	print "==export start=="
-	export()
+	# export_xls()
+	export_doc()
 	print "==End=="
