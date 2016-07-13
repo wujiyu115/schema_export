@@ -26,9 +26,14 @@ class ExcelUtil():
 		return self.book.add_sheet(sheet_name)
 
 	def write(self, sheet, headings, data, rowx=0):
-		heading_xf = easyxf('font: bold on; align: wrap off, vert centre, horiz center')
-		title_xf = easyxf('font: bold on, color blue; align: wrap on, vert bottom, horiz center; border: left thin, right thin, top thin, bottom thin')
-		data_xfs = easyxf('font: bold off; align: wrap off, vert centre, horiz left; border: left thin, right thin, top thin, bottom thin')
+		# heading_xf = easyxf('font: bold on; align: wrap off, vert centre, horiz center')
+		# title_xf = easyxf('font: bold on, color blue; align: wrap on, vert bottom, horiz center; border: left thin, right thin, top thin, bottom thin')
+		# data_xfs = easyxf('font: bold off; align: wrap off, vert centre, horiz left; border: left thin, right thin, top thin, bottom thin')
+
+		heading_xf = easyxf()
+		title_xf = easyxf()
+		data_xfs =easyxf()
+
 		maxCol = 0
 		for colx, value in enumerate(headings):
 			sheet.write(rowx, colx, value, heading_xf)

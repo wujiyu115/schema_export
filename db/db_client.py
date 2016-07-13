@@ -27,10 +27,12 @@ class DictClient(object):
 
 	def conn(self):
 		settings = {
-			"host": "10.105.60.80",
+			# "host": "10.105.60.80",
+			"host": "127.0.0.1",
 			"user": "root",
-			"passwd": "12345678",
-			"db": "hj_game_stat_lyx_s",
+			# "passwd": "12345678",
+			"passwd": "root",
+			"db": "mysql",
 			"port": 3306,
 			"charset": "utf8",
 			"use_unicode": False,
