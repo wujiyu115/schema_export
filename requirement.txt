@@ -1,4 +1,5 @@
-python-docx
 MySQLdb
+python-docx
 xlrd
 xlwt
+reportlab

@@ -14,60 +14,21 @@ from xlrd import open_workbook
 from xlwt import Workbook,easyxf
 from xlutils.copy import copy
 
-class ExcelTemplateUtils():
-	'''
-	excel template utils
-	'''
 
-	def __init__(self, filename):
-		self.filename = filename
-		self.wb = self.getWB()
-
-	def getWB(self):
-		'''get the workbook'''
-		rb = open_workbook(self.filename, formatting_info=True)
-		wb = copy(rb)
-		return wb
-
-	def add(self, rowCount, lineCount, value, sheetCount):
-		'''
-		@param rowCount: 行号
-		@param lineCount: 列号
-		@param value: cell的值
-		@param sheetCount: sheet号
-		@param wb: wb
-		'''
-		self.wb.get_sheet(sheetCount).write(rowCount, lineCount, value)
-
-	def save(self):
-		self.wb.save(self.filename)
-
-
-class ExcelNoTemplateUtils():
+class ExcelUtil():
 
 	def __init__(self, filename):
 		self.filename = filename
 		self.book = Workbook()
 
-	def ezxf(self, xf=""):
-		return easyxf(xf)
 
 	def addSheet(self, sheet_name):
 		return self.book.add_sheet(sheet_name)
 
-	def write(self, sheet, headings, data, heading_xf=easyxf(), title_xf=easyxf(), data_xfs=easyxf(), rowx=0):
-		'''
-		@param sheet_name: excel sheet
-		@param headings: the first row in the sheet
-		@type data: dict
-		@param heading_xf: style
-		@param data_xfs: style
-		@param title_xf: style
-		@param rowx: row
-
-		Example:
-		heading_xf=xlwt.ezxf('font: bold on; align: wrap on, vert centre, horiz center')
-		'''
+	def write(self, sheet, headings, data, rowx=0):
+		heading_xf = easyxf('font: bold on; align: wrap off, vert centre, horiz center')
+		title_xf = easyxf('font: bold on, color blue; align: wrap on, vert bottom, horiz center; border: left thin, right thin, top thin, bottom thin')
+		data_xfs = easyxf('font: bold off; align: wrap off, vert centre, horiz left; border: left thin, right thin, top thin, bottom thin')
 		maxCol = 0
 		for colx, value in enumerate(headings):
 			sheet.write(rowx, colx, value, heading_xf)
@@ -101,3 +62,5 @@ class ExcelNoTemplateUtils():
 
 	def save(self):
 		self.book.save(self.filename)
+
+

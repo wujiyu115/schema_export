@@ -2,12 +2,13 @@
 # @Author: wujiyu115
 # @Date:   2016-07-12 18:56:20
 # @Last Modified by:   wujiyu115
-# @Last Modified time: 2016-07-12 20:35:08
-from client import DictClient
+# @Last Modified time: 2016-07-13 14:08:15
+from db_client import DictClient
 
 class DbData(object):
-	def __init__(self, dbname="localhost"):
-		self.client = DictClient(dbname)
+	def __init__(self):
+		self.client = DictClient()
+		self.ignore_db = ["information_schema", "mysql", "performance_schema"]
 
 
 	##
@@ -20,7 +21,7 @@ class DbData(object):
 	def getDB(self):
 		result = [database[0] for database in self.client.execute("show databases")]
 		if result:
-			for ignore in ["information_schema", "mysql", "performance_schema"]:
+			for ignore in self.ignore_db:
 				result.remove(ignore)
 		return result
 
@@ -70,6 +71,9 @@ class DbData(object):
 					datas[table] = columns
 		return datas
 
+	def close(self):
+		if self.client:
+			self.client.close()
 
 class MySqlDbData(DbData):
 	"""docstring for MySqlDbData"""
