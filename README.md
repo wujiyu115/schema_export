@@ -1,25 +1,74 @@
-#schame_export
+#schema_export
 
-SHOW TABLE STATUS
+## 简介:
+`schema_export`是一个导出数据库结构的工具,支持多种格式
 
-## 导出
+### 支持格式
 + xls
 + docx
 + pdf
 + html
 + csv
 
-
-## 数据库支持
+### 支持数据库
 + mysql
 
+## 使用:
+### 安装python2.7
+```shell
+https://www.python.org/ftp/python/2.7.11/python-2.7.11.msi
+
+#配置环境变量
+C:\Python27
+C:\Python27\Scripts
+#加入Path
+```
+
+###安装pip
+```shell
+##下载pip安装脚本
+https://bootstrap.pypa.io/get-pip.py
+## 用python执行
+python get-pip.py
+```
+
+### 安装依赖库
+```shell
+pip install -r requirements.txt
+#windows 安装mysql驱动
+https://pypi.python.org/pypi/MySQL-python/1.2.5
+```
+
+
+###  运行
+```shell
+python export.py
+#或者用sublime运行
+```
+
+
+## 内容说明
+```
+├── README.md #说明文件
+├── configs
+│   ├── config.conf #配置文件
+│   └──  logging.yaml
+├── export.py
+├── logs   #日志目录
+├── requirements.txt # 依赖
+```
+
+### 配置说明
++ `configs/config.conf`日志级别在调试完成后设置为`INFO`级别,减少调试输出
+
+SHOW TABLE STATUS
 
 ### 任务表
 - [x] mysql
 - [x] xls
 - [x] docx
 - [x] pdf
-- [ ] html
+- [x] html
 - [ ] csv
 - [ ] 表注释
 - [x ] 字段注释

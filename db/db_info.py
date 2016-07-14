@@ -2,7 +2,7 @@
 # @Author: wujiyu115
 # @Date:   2016-07-12 18:56:20
 # @Last Modified by:   wujiyu115
-# @Last Modified time: 2016-07-13 20:24:45
+# @Last Modified time: 2016-07-14 10:29:28
 from db_client import DictClient
 
 
@@ -71,10 +71,20 @@ class DbData(object):
 	def getTableInfo(self):
 			return [list(tabelinfo) for tabelinfo in self.client.execute("SHOW TABLE STATUS ")]
 
-	## @brief      Gets the datas.
+	## @brief      得到全部数据
 	## @param      self   The object
 	## @param      sheet  The sheet
 	## @return     The datas.
+	'''
+	{'two':
+	 [['ID', 'int(11)', 'NO', 'PRI', 'NULL', 'auto_increment', 'one ID'],
+	 ['NAME', 'varchar(128)', 'NO', '', 'NULL', '', ''],
+	 ['DATE', 'datetime', 'NO', '', 'NULL', '', '']],
+	 'one':
+	 [['ID', 'int(11)', 'NO', 'PRI', 'NULL', 'auto_increment', 'one ID'],
+	 ['NAME', 'varchar(128)', 'NO', '', 'NULL', '', ''],
+	 ['DATE', 'datetime', 'NO', '', 'NULL', '', '']]}
+	'''
 	def getDatas(self, sheet):
 		datas = {}
 		if sheet:

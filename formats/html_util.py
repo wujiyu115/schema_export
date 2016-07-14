@@ -2,15 +2,14 @@
 # @Author: wujiyu115
 # @Date:   2016-07-13 20:27:03
 # @Last Modified by:   wujiyu115
-# @Last Modified time: 2016-07-13 20:46:32
+# @Last Modified time: 2016-07-14 11:13:21
 import os
 from jinja2 import Environment, FileSystemLoader
 
-PATH = os.path.dirname(os.path.abspath(__file__))
-print(PATH)
+PATH=os.path.join(os.getcwd(), 'templates')
 TEMPLATE_ENVIRONMENT = Environment(
     autoescape=False,
-    loader=FileSystemLoader(os.path.join('.', 'templates')),
+    loader=FileSystemLoader(PATH),
     trim_blocks=False)
 
 

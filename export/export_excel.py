@@ -2,7 +2,7 @@
 # @Author: wujiyu115
 # @Date:   2016-07-12 18:56:20
 # @Last Modified by:   wujiyu115
-# @Last Modified time: 2016-07-13 20:13:31
+# @Last Modified time: 2016-07-14 11:11:23
 
 
 from formats.excel_util import ExcelUtil
@@ -14,6 +14,7 @@ c = MySqlDbData()
 def export_xls(xls_name,db):
 	entu = ExcelUtil(xls_name)
 	sheets = c.getDB() # 每个数据库作为一个sheet表格
+	sheets =[db]
 	datas = {}
 	for sheet in sheets:
 		datas =c.getDatas(sheet)

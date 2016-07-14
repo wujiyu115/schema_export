@@ -19,7 +19,7 @@ class ExcelUtil():
 
 	def __init__(self, filename):
 		self.filename = filename
-		self.book = Workbook()
+		self.book = Workbook(encoding='utf-8')
 
 
 	def addSheet(self, sheet_name):
@@ -44,17 +44,6 @@ class ExcelUtil():
 		sheet.set_remove_splits(True) # if user does unfreeze, don't leave a split there
 
 		for k,v in data.iteritems():
-			'''
-			Usage:
-			{'two':
-			 [['ID', 'int(11)', 'NO', 'PRI', 'NULL', 'auto_increment', 'one ID'],
-			 ['NAME', 'varchar(128)', 'NO', '', 'NULL', '', ''],
-			 ['DATE', 'datetime', 'NO', '', 'NULL', '', '']],
-			 'one':
-			 [['ID', 'int(11)', 'NO', 'PRI', 'NULL', 'auto_increment', 'one ID'],
-			 ['NAME', 'varchar(128)', 'NO', '', 'NULL', '', ''],
-			 ['DATE', 'datetime', 'NO', '', 'NULL', '', '']]}
-			'''
 			rowx += 1
 			sheet.write_merge(rowx, rowx, 0, maxCol, k, title_xf)
 			for row in v:

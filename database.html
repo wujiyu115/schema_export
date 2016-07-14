@@ -1,0 +1,3086 @@
+<html>
+
+<head>
+	<title>数据库设计文档 --bee_char</title>
+	<style type='text/css'>
+	body,
+	td {
+		font-family: verdana;
+		font-size: 12px;
+		line-height: 150%;
+	}
+
+	table {
+		width: 100%;
+		background-color: #ccc;
+		margin: 5px 0;
+	}
+
+	td {
+		background-color: #fff;
+		padding: 3px;
+		padding-left: 10px;
+	}
+
+	thead td {
+		text-align: center;
+		font-weight: bold;
+		background-color: #eee;
+	}
+
+	a:link,
+	a:visited,
+	a:active {
+		color: #015FB6;
+		text-decoration: none;
+	}
+
+	a:hover {
+		color: #E33E06;
+	}
+	</style>
+
+	<head>
+
+		<body style='text-align:center;'>
+			<div style='width:800px; margin:20px auto; text-align:left;'><a name='index' />
+				<H2 style='text-align:center; line-height:50px;'>数据库设计文档</H2>
+				<div><b>数据库名：bee_char</b></div>
+				<table cellspacing='1' cellpadding='0'>
+					<thead>
+						<tr>
+							<td style='width:40px; '>序号</td>
+							<td>表名</td>
+							<td>说明</td>
+						</tr>
+					</thead>
+					
+						<tr>
+							<td style='text-align:center;'>1</td>
+							<td><a href='#shop'>shop</a></td>
+							<td>后台活动表</td>
+						</tr>
+					
+						<tr>
+							<td style='text-align:center;'>2</td>
+							<td><a href='#manor_factory'>manor_factory</a></td>
+							<td>后台活动表</td>
+						</tr>
+					
+						<tr>
+							<td style='text-align:center;'>3</td>
+							<td><a href='#pvp'>pvp</a></td>
+							<td>后台活动表</td>
+						</tr>
+					
+						<tr>
+							<td style='text-align:center;'>4</td>
+							<td><a href='#dungeons'>dungeons</a></td>
+							<td>后台活动表</td>
+						</tr>
+					
+						<tr>
+							<td style='text-align:center;'>5</td>
+							<td><a href='#guild_event'>guild_event</a></td>
+							<td>后台活动表</td>
+						</tr>
+					
+						<tr>
+							<td style='text-align:center;'>6</td>
+							<td><a href='#decoration'>decoration</a></td>
+							<td>后台活动表</td>
+						</tr>
+					
+						<tr>
+							<td style='text-align:center;'>7</td>
+							<td><a href='#guild_task'>guild_task</a></td>
+							<td>后台活动表</td>
+						</tr>
+					
+						<tr>
+							<td style='text-align:center;'>8</td>
+							<td><a href='#turn_card'>turn_card</a></td>
+							<td>后台活动表</td>
+						</tr>
+					
+						<tr>
+							<td style='text-align:center;'>9</td>
+							<td><a href='#buy_log'>buy_log</a></td>
+							<td>后台活动表</td>
+						</tr>
+					
+						<tr>
+							<td style='text-align:center;'>10</td>
+							<td><a href='#monster_position'>monster_position</a></td>
+							<td>后台活动表</td>
+						</tr>
+					
+						<tr>
+							<td style='text-align:center;'>11</td>
+							<td><a href='#silvernine'>silvernine</a></td>
+							<td>后台活动表</td>
+						</tr>
+					
+						<tr>
+							<td style='text-align:center;'>12</td>
+							<td><a href='#skill'>skill</a></td>
+							<td>后台活动表</td>
+						</tr>
+					
+						<tr>
+							<td style='text-align:center;'>13</td>
+							<td><a href='#defence_items'>defence_items</a></td>
+							<td>后台活动表</td>
+						</tr>
+					
+						<tr>
+							<td style='text-align:center;'>14</td>
+							<td><a href='#monster_attack'>monster_attack</a></td>
+							<td>后台活动表</td>
+						</tr>
+					
+						<tr>
+							<td style='text-align:center;'>15</td>
+							<td><a href='#dungeon'>dungeon</a></td>
+							<td>后台活动表</td>
+						</tr>
+					
+						<tr>
+							<td style='text-align:center;'>16</td>
+							<td><a href='#item'>item</a></td>
+							<td>后台活动表</td>
+						</tr>
+					
+						<tr>
+							<td style='text-align:center;'>17</td>
+							<td><a href='#monster_attack_cache'>monster_attack_cache</a></td>
+							<td>后台活动表</td>
+						</tr>
+					
+						<tr>
+							<td style='text-align:center;'>18</td>
+							<td><a href='#role'>role</a></td>
+							<td>后台活动表</td>
+						</tr>
+					
+						<tr>
+							<td style='text-align:center;'>19</td>
+							<td><a href='#pvp_fight_data'>pvp_fight_data</a></td>
+							<td>后台活动表</td>
+						</tr>
+					
+						<tr>
+							<td style='text-align:center;'>20</td>
+							<td><a href='#mail'>mail</a></td>
+							<td>后台活动表</td>
+						</tr>
+					
+						<tr>
+							<td style='text-align:center;'>21</td>
+							<td><a href='#guild_feed'>guild_feed</a></td>
+							<td>后台活动表</td>
+						</tr>
+					
+						<tr>
+							<td style='text-align:center;'>22</td>
+							<td><a href='#recharge'>recharge</a></td>
+							<td>后台活动表</td>
+						</tr>
+					
+						<tr>
+							<td style='text-align:center;'>23</td>
+							<td><a href='#monsters'>monsters</a></td>
+							<td>后台活动表</td>
+						</tr>
+					
+						<tr>
+							<td style='text-align:center;'>24</td>
+							<td><a href='#friend'>friend</a></td>
+							<td>后台活动表</td>
+						</tr>
+					
+						<tr>
+							<td style='text-align:center;'>25</td>
+							<td><a href='#buff'>buff</a></td>
+							<td>后台活动表</td>
+						</tr>
+					
+						<tr>
+							<td style='text-align:center;'>26</td>
+							<td><a href='#silvermine_cache'>silvermine_cache</a></td>
+							<td>后台活动表</td>
+						</tr>
+					
+						<tr>
+							<td style='text-align:center;'>27</td>
+							<td><a href='#active_cache'>active_cache</a></td>
+							<td>后台活动表</td>
+						</tr>
+					
+						<tr>
+							<td style='text-align:center;'>28</td>
+							<td><a href='#pub'>pub</a></td>
+							<td>后台活动表</td>
+						</tr>
+					
+						<tr>
+							<td style='text-align:center;'>29</td>
+							<td><a href='#trade_city'>trade_city</a></td>
+							<td>后台活动表</td>
+						</tr>
+					
+						<tr>
+							<td style='text-align:center;'>30</td>
+							<td><a href='#quest'>quest</a></td>
+							<td>后台活动表</td>
+						</tr>
+					
+						<tr>
+							<td style='text-align:center;'>31</td>
+							<td><a href='#active_reward'>active_reward</a></td>
+							<td>后台活动表</td>
+						</tr>
+					
+						<tr>
+							<td style='text-align:center;'>32</td>
+							<td><a href='#active'>active</a></td>
+							<td>后台活动表</td>
+						</tr>
+					
+						<tr>
+							<td style='text-align:center;'>33</td>
+							<td><a href='#sign'>sign</a></td>
+							<td>后台活动表</td>
+						</tr>
+					
+						<tr>
+							<td style='text-align:center;'>34</td>
+							<td><a href='#world_boss'>world_boss</a></td>
+							<td>后台活动表</td>
+						</tr>
+					
+						<tr>
+							<td style='text-align:center;'>35</td>
+							<td><a href='#scene_statistics'>scene_statistics</a></td>
+							<td>后台活动表</td>
+						</tr>
+					
+						<tr>
+							<td style='text-align:center;'>36</td>
+							<td><a href='#building'>building</a></td>
+							<td>后台活动表</td>
+						</tr>
+					
+						<tr>
+							<td style='text-align:center;'>37</td>
+							<td><a href='#account'>account</a></td>
+							<td>后台活动表</td>
+						</tr>
+					
+						<tr>
+							<td style='text-align:center;'>38</td>
+							<td><a href='#guild'>guild</a></td>
+							<td>后台活动表</td>
+						</tr>
+					
+						<tr>
+							<td style='text-align:center;'>39</td>
+							<td><a href='#item_statistics'>item_statistics</a></td>
+							<td>后台活动表</td>
+						</tr>
+					
+						<tr>
+							<td style='text-align:center;'>40</td>
+							<td><a href='#science'>science</a></td>
+							<td>后台活动表</td>
+						</tr>
+					
+						<tr>
+							<td style='text-align:center;'>41</td>
+							<td><a href='#random_reward'>random_reward</a></td>
+							<td>后台活动表</td>
+						</tr>
+					
+						<tr>
+							<td style='text-align:center;'>42</td>
+							<td><a href='#money_factory'>money_factory</a></td>
+							<td>后台活动表</td>
+						</tr>
+					
+						<tr>
+							<td style='text-align:center;'>43</td>
+							<td><a href='#bag'>bag</a></td>
+							<td>后台活动表</td>
+						</tr>
+					
+						<tr>
+							<td style='text-align:center;'>44</td>
+							<td><a href='#rune'>rune</a></td>
+							<td>后台活动表</td>
+						</tr>
+					
+						<tr>
+							<td style='text-align:center;'>45</td>
+							<td><a href='#account_power'>account_power</a></td>
+							<td>后台活动表</td>
+						</tr>
+					
+						<tr>
+							<td style='text-align:center;'>46</td>
+							<td><a href='#college'>college</a></td>
+							<td>后台活动表</td>
+						</tr>
+					
+						<tr>
+							<td style='text-align:center;'>47</td>
+							<td><a href='#trade_player'>trade_player</a></td>
+							<td>后台活动表</td>
+						</tr>
+					
+						<tr>
+							<td style='text-align:center;'>48</td>
+							<td><a href='#trade_city_player'>trade_city_player</a></td>
+							<td>后台活动表</td>
+						</tr>
+					
+						<tr>
+							<td style='text-align:center;'>49</td>
+							<td><a href='#fief'>fief</a></td>
+							<td>后台活动表</td>
+						</tr>
+					
+				</table>
+				
+					<a name='shop' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：shop</b></div>
+					<div>说明：后台活动表</div>
+					<div>数据列：</div>
+					<table cellspacing='1' cellpadding='0'>
+						<thead>
+							<tr>
+								<td style='width:40px; '>序号</td>
+								<td>名称</td>
+								<td>数据类型</td>
+								<td>允许空值</td>
+								<td>主键</td>
+								<td>默认值</td>
+								<td>额外信息</td>
+								<td>说明</td>
+							</tr>
+						</thead>
+						
+							<tr>
+								<td style='text-align:center;'>1</td>
+								<td>player_id</td>
+								<td align='center'>bigint(20)</td>
+								<td align='center'>NO</td>
+								<td align='center'>PRI</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>2</td>
+								<td>data</td>
+								<td align='center'>longblob</td>
+								<td align='center'>NO</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>数据</td>
+							</tr>
+						
+					</table>
+				
+					<a name='manor_factory' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：manor_factory</b></div>
+					<div>说明：后台活动表</div>
+					<div>数据列：</div>
+					<table cellspacing='1' cellpadding='0'>
+						<thead>
+							<tr>
+								<td style='width:40px; '>序号</td>
+								<td>名称</td>
+								<td>数据类型</td>
+								<td>允许空值</td>
+								<td>主键</td>
+								<td>默认值</td>
+								<td>额外信息</td>
+								<td>说明</td>
+							</tr>
+						</thead>
+						
+							<tr>
+								<td style='text-align:center;'>1</td>
+								<td>player_id</td>
+								<td align='center'>bigint(20)</td>
+								<td align='center'>NO</td>
+								<td align='center'>PRI</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>2</td>
+								<td>data</td>
+								<td align='center'>longblob</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+					</table>
+				
+					<a name='pvp' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：pvp</b></div>
+					<div>说明：后台活动表</div>
+					<div>数据列：</div>
+					<table cellspacing='1' cellpadding='0'>
+						<thead>
+							<tr>
+								<td style='width:40px; '>序号</td>
+								<td>名称</td>
+								<td>数据类型</td>
+								<td>允许空值</td>
+								<td>主键</td>
+								<td>默认值</td>
+								<td>额外信息</td>
+								<td>说明</td>
+							</tr>
+						</thead>
+						
+							<tr>
+								<td style='text-align:center;'>1</td>
+								<td>pvp_id</td>
+								<td align='center'>char(20)</td>
+								<td align='center'>NO</td>
+								<td align='center'>PRI</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>2</td>
+								<td>ranking</td>
+								<td align='center'>int(8)</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>3</td>
+								<td>data</td>
+								<td align='center'>longblob</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>4</td>
+								<td>base</td>
+								<td align='center'>longblob</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+					</table>
+				
+					<a name='dungeons' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：dungeons</b></div>
+					<div>说明：后台活动表</div>
+					<div>数据列：</div>
+					<table cellspacing='1' cellpadding='0'>
+						<thead>
+							<tr>
+								<td style='width:40px; '>序号</td>
+								<td>名称</td>
+								<td>数据类型</td>
+								<td>允许空值</td>
+								<td>主键</td>
+								<td>默认值</td>
+								<td>额外信息</td>
+								<td>说明</td>
+							</tr>
+						</thead>
+						
+							<tr>
+								<td style='text-align:center;'>1</td>
+								<td>player_id</td>
+								<td align='center'>bigint(20)</td>
+								<td align='center'>NO</td>
+								<td align='center'>PRI</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>2</td>
+								<td>data</td>
+								<td align='center'>longblob</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+					</table>
+				
+					<a name='guild_event' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：guild_event</b></div>
+					<div>说明：后台活动表</div>
+					<div>数据列：</div>
+					<table cellspacing='1' cellpadding='0'>
+						<thead>
+							<tr>
+								<td style='width:40px; '>序号</td>
+								<td>名称</td>
+								<td>数据类型</td>
+								<td>允许空值</td>
+								<td>主键</td>
+								<td>默认值</td>
+								<td>额外信息</td>
+								<td>说明</td>
+							</tr>
+						</thead>
+						
+							<tr>
+								<td style='text-align:center;'>1</td>
+								<td>guild_id</td>
+								<td align='center'>float</td>
+								<td align='center'>NO</td>
+								<td align='center'>PRI</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>2</td>
+								<td>guild_data</td>
+								<td align='center'>blob</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+					</table>
+				
+					<a name='decoration' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：decoration</b></div>
+					<div>说明：后台活动表</div>
+					<div>数据列：</div>
+					<table cellspacing='1' cellpadding='0'>
+						<thead>
+							<tr>
+								<td style='width:40px; '>序号</td>
+								<td>名称</td>
+								<td>数据类型</td>
+								<td>允许空值</td>
+								<td>主键</td>
+								<td>默认值</td>
+								<td>额外信息</td>
+								<td>说明</td>
+							</tr>
+						</thead>
+						
+							<tr>
+								<td style='text-align:center;'>1</td>
+								<td>player_id</td>
+								<td align='center'>bigint(20) unsigned</td>
+								<td align='center'>NO</td>
+								<td align='center'>PRI</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>玩家id</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>2</td>
+								<td>data</td>
+								<td align='center'>longblob</td>
+								<td align='center'>NO</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>数据</td>
+							</tr>
+						
+					</table>
+				
+					<a name='guild_task' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：guild_task</b></div>
+					<div>说明：后台活动表</div>
+					<div>数据列：</div>
+					<table cellspacing='1' cellpadding='0'>
+						<thead>
+							<tr>
+								<td style='width:40px; '>序号</td>
+								<td>名称</td>
+								<td>数据类型</td>
+								<td>允许空值</td>
+								<td>主键</td>
+								<td>默认值</td>
+								<td>额外信息</td>
+								<td>说明</td>
+							</tr>
+						</thead>
+						
+							<tr>
+								<td style='text-align:center;'>1</td>
+								<td>player_id</td>
+								<td align='center'>bigint(20)</td>
+								<td align='center'>NO</td>
+								<td align='center'>PRI</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>2</td>
+								<td>data</td>
+								<td align='center'>longblob</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+					</table>
+				
+					<a name='turn_card' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：turn_card</b></div>
+					<div>说明：后台活动表</div>
+					<div>数据列：</div>
+					<table cellspacing='1' cellpadding='0'>
+						<thead>
+							<tr>
+								<td style='width:40px; '>序号</td>
+								<td>名称</td>
+								<td>数据类型</td>
+								<td>允许空值</td>
+								<td>主键</td>
+								<td>默认值</td>
+								<td>额外信息</td>
+								<td>说明</td>
+							</tr>
+						</thead>
+						
+							<tr>
+								<td style='text-align:center;'>1</td>
+								<td>player_id</td>
+								<td align='center'>int(11)</td>
+								<td align='center'>NO</td>
+								<td align='center'>PRI</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>2</td>
+								<td>data</td>
+								<td align='center'>longblob</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+					</table>
+				
+					<a name='buy_log' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：buy_log</b></div>
+					<div>说明：后台活动表</div>
+					<div>数据列：</div>
+					<table cellspacing='1' cellpadding='0'>
+						<thead>
+							<tr>
+								<td style='width:40px; '>序号</td>
+								<td>名称</td>
+								<td>数据类型</td>
+								<td>允许空值</td>
+								<td>主键</td>
+								<td>默认值</td>
+								<td>额外信息</td>
+								<td>说明</td>
+							</tr>
+						</thead>
+						
+							<tr>
+								<td style='text-align:center;'>1</td>
+								<td>player_id</td>
+								<td align='center'>bigint(20) unsigned</td>
+								<td align='center'>NO</td>
+								<td align='center'>PRI</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>玩家id</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>2</td>
+								<td>data</td>
+								<td align='center'>longblob</td>
+								<td align='center'>NO</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>数据</td>
+							</tr>
+						
+					</table>
+				
+					<a name='monster_position' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：monster_position</b></div>
+					<div>说明：后台活动表</div>
+					<div>数据列：</div>
+					<table cellspacing='1' cellpadding='0'>
+						<thead>
+							<tr>
+								<td style='width:40px; '>序号</td>
+								<td>名称</td>
+								<td>数据类型</td>
+								<td>允许空值</td>
+								<td>主键</td>
+								<td>默认值</td>
+								<td>额外信息</td>
+								<td>说明</td>
+							</tr>
+						</thead>
+						
+							<tr>
+								<td style='text-align:center;'>1</td>
+								<td>player_id</td>
+								<td align='center'>bigint(20) unsigned</td>
+								<td align='center'>NO</td>
+								<td align='center'>PRI</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>2</td>
+								<td>data</td>
+								<td align='center'>longblob</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+					</table>
+				
+					<a name='silvernine' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：silvernine</b></div>
+					<div>说明：后台活动表</div>
+					<div>数据列：</div>
+					<table cellspacing='1' cellpadding='0'>
+						<thead>
+							<tr>
+								<td style='width:40px; '>序号</td>
+								<td>名称</td>
+								<td>数据类型</td>
+								<td>允许空值</td>
+								<td>主键</td>
+								<td>默认值</td>
+								<td>额外信息</td>
+								<td>说明</td>
+							</tr>
+						</thead>
+						
+							<tr>
+								<td style='text-align:center;'>1</td>
+								<td>player_id</td>
+								<td align='center'>bigint(20)</td>
+								<td align='center'>NO</td>
+								<td align='center'>PRI</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>2</td>
+								<td>data</td>
+								<td align='center'>longblob</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+					</table>
+				
+					<a name='skill' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：skill</b></div>
+					<div>说明：后台活动表</div>
+					<div>数据列：</div>
+					<table cellspacing='1' cellpadding='0'>
+						<thead>
+							<tr>
+								<td style='width:40px; '>序号</td>
+								<td>名称</td>
+								<td>数据类型</td>
+								<td>允许空值</td>
+								<td>主键</td>
+								<td>默认值</td>
+								<td>额外信息</td>
+								<td>说明</td>
+							</tr>
+						</thead>
+						
+							<tr>
+								<td style='text-align:center;'>1</td>
+								<td>player_id</td>
+								<td align='center'>bigint(20) unsigned</td>
+								<td align='center'>NO</td>
+								<td align='center'>PRI</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>玩家id</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>2</td>
+								<td>data</td>
+								<td align='center'>longblob</td>
+								<td align='center'>NO</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>数据</td>
+							</tr>
+						
+					</table>
+				
+					<a name='defence_items' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：defence_items</b></div>
+					<div>说明：后台活动表</div>
+					<div>数据列：</div>
+					<table cellspacing='1' cellpadding='0'>
+						<thead>
+							<tr>
+								<td style='width:40px; '>序号</td>
+								<td>名称</td>
+								<td>数据类型</td>
+								<td>允许空值</td>
+								<td>主键</td>
+								<td>默认值</td>
+								<td>额外信息</td>
+								<td>说明</td>
+							</tr>
+						</thead>
+						
+							<tr>
+								<td style='text-align:center;'>1</td>
+								<td>player_id</td>
+								<td align='center'>bigint(12)</td>
+								<td align='center'>NO</td>
+								<td align='center'>PRI</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>2</td>
+								<td>data</td>
+								<td align='center'>longblob</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+					</table>
+				
+					<a name='monster_attack' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：monster_attack</b></div>
+					<div>说明：后台活动表</div>
+					<div>数据列：</div>
+					<table cellspacing='1' cellpadding='0'>
+						<thead>
+							<tr>
+								<td style='width:40px; '>序号</td>
+								<td>名称</td>
+								<td>数据类型</td>
+								<td>允许空值</td>
+								<td>主键</td>
+								<td>默认值</td>
+								<td>额外信息</td>
+								<td>说明</td>
+							</tr>
+						</thead>
+						
+							<tr>
+								<td style='text-align:center;'>1</td>
+								<td>player_id</td>
+								<td align='center'>bigint(20)</td>
+								<td align='center'>NO</td>
+								<td align='center'>PRI</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>2</td>
+								<td>data</td>
+								<td align='center'>longblob</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+					</table>
+				
+					<a name='dungeon' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：dungeon</b></div>
+					<div>说明：后台活动表</div>
+					<div>数据列：</div>
+					<table cellspacing='1' cellpadding='0'>
+						<thead>
+							<tr>
+								<td style='width:40px; '>序号</td>
+								<td>名称</td>
+								<td>数据类型</td>
+								<td>允许空值</td>
+								<td>主键</td>
+								<td>默认值</td>
+								<td>额外信息</td>
+								<td>说明</td>
+							</tr>
+						</thead>
+						
+							<tr>
+								<td style='text-align:center;'>1</td>
+								<td>player_id</td>
+								<td align='center'>bigint(20)</td>
+								<td align='center'>NO</td>
+								<td align='center'>PRI</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>2</td>
+								<td>data</td>
+								<td align='center'>longblob</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+					</table>
+				
+					<a name='item' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：item</b></div>
+					<div>说明：后台活动表</div>
+					<div>数据列：</div>
+					<table cellspacing='1' cellpadding='0'>
+						<thead>
+							<tr>
+								<td style='width:40px; '>序号</td>
+								<td>名称</td>
+								<td>数据类型</td>
+								<td>允许空值</td>
+								<td>主键</td>
+								<td>默认值</td>
+								<td>额外信息</td>
+								<td>说明</td>
+							</tr>
+						</thead>
+						
+							<tr>
+								<td style='text-align:center;'>1</td>
+								<td>player_id</td>
+								<td align='center'>bigint(20) unsigned</td>
+								<td align='center'>NO</td>
+								<td align='center'>PRI</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>玩家id</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>2</td>
+								<td>data</td>
+								<td align='center'>longblob</td>
+								<td align='center'>NO</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>数据</td>
+							</tr>
+						
+					</table>
+				
+					<a name='monster_attack_cache' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：monster_attack_cache</b></div>
+					<div>说明：后台活动表</div>
+					<div>数据列：</div>
+					<table cellspacing='1' cellpadding='0'>
+						<thead>
+							<tr>
+								<td style='width:40px; '>序号</td>
+								<td>名称</td>
+								<td>数据类型</td>
+								<td>允许空值</td>
+								<td>主键</td>
+								<td>默认值</td>
+								<td>额外信息</td>
+								<td>说明</td>
+							</tr>
+						</thead>
+						
+							<tr>
+								<td style='text-align:center;'>1</td>
+								<td>player_id</td>
+								<td align='center'>bigint(20)</td>
+								<td align='center'>NO</td>
+								<td align='center'>PRI</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>2</td>
+								<td>data</td>
+								<td align='center'>longblob</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>3</td>
+								<td>begin_time</td>
+								<td align='center'>bigint(20)</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+					</table>
+				
+					<a name='role' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：role</b></div>
+					<div>说明：后台活动表</div>
+					<div>数据列：</div>
+					<table cellspacing='1' cellpadding='0'>
+						<thead>
+							<tr>
+								<td style='width:40px; '>序号</td>
+								<td>名称</td>
+								<td>数据类型</td>
+								<td>允许空值</td>
+								<td>主键</td>
+								<td>默认值</td>
+								<td>额外信息</td>
+								<td>说明</td>
+							</tr>
+						</thead>
+						
+							<tr>
+								<td style='text-align:center;'>1</td>
+								<td>accountid</td>
+								<td align='center'>int(11)</td>
+								<td align='center'>NO</td>
+								<td align='center'>MUL</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>账号id</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>2</td>
+								<td>playerid</td>
+								<td align='center'>bigint(20) unsigned</td>
+								<td align='center'>NO</td>
+								<td align='center'>PRI</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>玩家id</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>3</td>
+								<td>max_id</td>
+								<td align='center'>bigint(20) unsigned</td>
+								<td align='center'>NO</td>
+								<td align='center'></td>
+								<td align='center'>0</td>
+								<td align='center'></td>
+								<td>最大ID</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>4</td>
+								<td>name</td>
+								<td align='center'>varchar(50)</td>
+								<td align='center'>NO</td>
+								<td align='center'>UNI</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>昵称</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>5</td>
+								<td>sex</td>
+								<td align='center'>int(11)</td>
+								<td align='center'>NO</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>性别</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>6</td>
+								<td>vip</td>
+								<td align='center'>int(11)</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>0</td>
+								<td align='center'></td>
+								<td>会员等级</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>7</td>
+								<td>gold</td>
+								<td align='center'>bigint(20)</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>0</td>
+								<td align='center'></td>
+								<td>元宝</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>8</td>
+								<td>guild_id</td>
+								<td align='center'>bigint(20) unsigned</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>0</td>
+								<td align='center'></td>
+								<td>公会</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>9</td>
+								<td>money</td>
+								<td align='center'>bigint(20)</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>0</td>
+								<td align='center'></td>
+								<td>金币</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>10</td>
+								<td>recharge_gold</td>
+								<td align='center'>bigint(20)</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>0</td>
+								<td align='center'></td>
+								<td>充值元宝</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>11</td>
+								<td>login_time</td>
+								<td align='center'>int(20)</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>0</td>
+								<td align='center'></td>
+								<td>上线时间</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>12</td>
+								<td>logout_time</td>
+								<td align='center'>int(20)</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>0</td>
+								<td align='center'></td>
+								<td>下线时间</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>13</td>
+								<td>online_time</td>
+								<td align='center'>int(20)</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>0</td>
+								<td align='center'></td>
+								<td>在线时间</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>14</td>
+								<td>voice_time</td>
+								<td align='center'>int(20)</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>0</td>
+								<td align='center'></td>
+								<td>千里传音的次数</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>15</td>
+								<td>newbie_guide</td>
+								<td align='center'>longblob</td>
+								<td align='center'>NO</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>新手引导保存数据</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>16</td>
+								<td>open_icon</td>
+								<td align='center'>longblob</td>
+								<td align='center'>NO</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>打开的图标</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>17</td>
+								<td>vip_data</td>
+								<td align='center'>longblob</td>
+								<td align='center'>NO</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>领取会员礼包记录</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>18</td>
+								<td>data</td>
+								<td align='center'>longblob</td>
+								<td align='center'>NO</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>装备数据</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>19</td>
+								<td>scene_data</td>
+								<td align='center'>longblob</td>
+								<td align='center'>NO</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>场景数据</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>20</td>
+								<td>valid</td>
+								<td align='center'>int(11)</td>
+								<td align='center'>NO</td>
+								<td align='center'></td>
+								<td align='center'>0</td>
+								<td align='center'></td>
+								<td>是否删除</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>21</td>
+								<td>del_time</td>
+								<td align='center'>timestamp</td>
+								<td align='center'>NO</td>
+								<td align='center'></td>
+								<td align='center'>CURRENT_TIMESTAMP</td>
+								<td align='center'></td>
+								<td>删除时间</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>22</td>
+								<td>create_time</td>
+								<td align='center'>timestamp</td>
+								<td align='center'>NO</td>
+								<td align='center'></td>
+								<td align='center'>0000-00-00 00:00:00</td>
+								<td align='center'></td>
+								<td>创建时间</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>23</td>
+								<td>lv</td>
+								<td align='center'>bigint(20)</td>
+								<td align='center'>NO</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>主城等级</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>24</td>
+								<td>recharge_data</td>
+								<td align='center'>longblob</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>充值信息</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>25</td>
+								<td>guild_name</td>
+								<td align='center'>varchar(50)</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>公会名</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>26</td>
+								<td>honor</td>
+								<td align='center'>int(11)</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>27</td>
+								<td>is_new_role</td>
+								<td align='center'>int(1)</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>0</td>
+								<td align='center'></td>
+								<td>是否是新角色</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>28</td>
+								<td>resources_data</td>
+								<td align='center'>longblob</td>
+								<td align='center'>NO</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>资源</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>29</td>
+								<td>energy</td>
+								<td align='center'>bigint(20)</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>0</td>
+								<td align='center'></td>
+								<td>体力</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>30</td>
+								<td>max_energy</td>
+								<td align='center'>bigint(20)</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>0</td>
+								<td align='center'></td>
+								<td>体力上限</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>31</td>
+								<td>buy_energy</td>
+								<td align='center'>bigint(20)</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>0</td>
+								<td align='center'></td>
+								<td>可购买次数</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>32</td>
+								<td>get_energy</td>
+								<td align='center'>int(11)</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>33</td>
+								<td>people</td>
+								<td align='center'>longblob</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>农民</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>34</td>
+								<td>fight</td>
+								<td align='center'>bigint(20)</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>0</td>
+								<td align='center'></td>
+								<td>战斗力</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>35</td>
+								<td>flag_data</td>
+								<td align='center'>varchar(100)</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>标志变量</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>36</td>
+								<td>extra</td>
+								<td align='center'>longblob</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+					</table>
+				
+					<a name='pvp_fight_data' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：pvp_fight_data</b></div>
+					<div>说明：后台活动表</div>
+					<div>数据列：</div>
+					<table cellspacing='1' cellpadding='0'>
+						<thead>
+							<tr>
+								<td style='width:40px; '>序号</td>
+								<td>名称</td>
+								<td>数据类型</td>
+								<td>允许空值</td>
+								<td>主键</td>
+								<td>默认值</td>
+								<td>额外信息</td>
+								<td>说明</td>
+							</tr>
+						</thead>
+						
+							<tr>
+								<td style='text-align:center;'>1</td>
+								<td>id</td>
+								<td align='center'>bigint(20)</td>
+								<td align='center'>NO</td>
+								<td align='center'>PRI</td>
+								<td align='center'>None</td>
+								<td align='center'>auto_increment</td>
+								<td></td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>2</td>
+								<td>record_id</td>
+								<td align='center'>bigint(20) unsigned</td>
+								<td align='center'>NO</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>3</td>
+								<td>data</td>
+								<td align='center'>longblob</td>
+								<td align='center'>NO</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>4</td>
+								<td>ref</td>
+								<td align='center'>int(11)</td>
+								<td align='center'>NO</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>5</td>
+								<td>create_time</td>
+								<td align='center'>bigint(20)</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+					</table>
+				
+					<a name='mail' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：mail</b></div>
+					<div>说明：后台活动表</div>
+					<div>数据列：</div>
+					<table cellspacing='1' cellpadding='0'>
+						<thead>
+							<tr>
+								<td style='width:40px; '>序号</td>
+								<td>名称</td>
+								<td>数据类型</td>
+								<td>允许空值</td>
+								<td>主键</td>
+								<td>默认值</td>
+								<td>额外信息</td>
+								<td>说明</td>
+							</tr>
+						</thead>
+						
+							<tr>
+								<td style='text-align:center;'>1</td>
+								<td>mail_id</td>
+								<td align='center'>bigint(20) unsigned</td>
+								<td align='center'>NO</td>
+								<td align='center'>PRI</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>邮件ID</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>2</td>
+								<td>player_id</td>
+								<td align='center'>bigint(20) unsigned</td>
+								<td align='center'>NO</td>
+								<td align='center'>MUL</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>玩家id</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>3</td>
+								<td>data</td>
+								<td align='center'>longblob</td>
+								<td align='center'>NO</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>数据</td>
+							</tr>
+						
+					</table>
+				
+					<a name='guild_feed' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：guild_feed</b></div>
+					<div>说明：后台活动表</div>
+					<div>数据列：</div>
+					<table cellspacing='1' cellpadding='0'>
+						<thead>
+							<tr>
+								<td style='width:40px; '>序号</td>
+								<td>名称</td>
+								<td>数据类型</td>
+								<td>允许空值</td>
+								<td>主键</td>
+								<td>默认值</td>
+								<td>额外信息</td>
+								<td>说明</td>
+							</tr>
+						</thead>
+						
+							<tr>
+								<td style='text-align:center;'>1</td>
+								<td>guild_id</td>
+								<td align='center'>int(11)</td>
+								<td align='center'>NO</td>
+								<td align='center'>PRI</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>2</td>
+								<td>guild_data</td>
+								<td align='center'>blob</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+					</table>
+				
+					<a name='recharge' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：recharge</b></div>
+					<div>说明：后台活动表</div>
+					<div>数据列：</div>
+					<table cellspacing='1' cellpadding='0'>
+						<thead>
+							<tr>
+								<td style='width:40px; '>序号</td>
+								<td>名称</td>
+								<td>数据类型</td>
+								<td>允许空值</td>
+								<td>主键</td>
+								<td>默认值</td>
+								<td>额外信息</td>
+								<td>说明</td>
+							</tr>
+						</thead>
+						
+							<tr>
+								<td style='text-align:center;'>1</td>
+								<td>id</td>
+								<td align='center'>int(11) unsigned</td>
+								<td align='center'>NO</td>
+								<td align='center'>PRI</td>
+								<td align='center'>None</td>
+								<td align='center'>auto_increment</td>
+								<td></td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>2</td>
+								<td>player_id</td>
+								<td align='center'>int(11)</td>
+								<td align='center'>NO</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>角色id</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>3</td>
+								<td>recharge_gold</td>
+								<td align='center'>int(11)</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>充值元宝数量</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>4</td>
+								<td>give_gold</td>
+								<td align='center'>int(11)</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>赠送元宝数量</td>
+							</tr>
+						
+					</table>
+				
+					<a name='monsters' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：monsters</b></div>
+					<div>说明：后台活动表</div>
+					<div>数据列：</div>
+					<table cellspacing='1' cellpadding='0'>
+						<thead>
+							<tr>
+								<td style='width:40px; '>序号</td>
+								<td>名称</td>
+								<td>数据类型</td>
+								<td>允许空值</td>
+								<td>主键</td>
+								<td>默认值</td>
+								<td>额外信息</td>
+								<td>说明</td>
+							</tr>
+						</thead>
+						
+							<tr>
+								<td style='text-align:center;'>1</td>
+								<td>player_id</td>
+								<td align='center'>bigint(20) unsigned</td>
+								<td align='center'>NO</td>
+								<td align='center'>PRI</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>玩家id</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>2</td>
+								<td>data</td>
+								<td align='center'>longblob</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+					</table>
+				
+					<a name='friend' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：friend</b></div>
+					<div>说明：后台活动表</div>
+					<div>数据列：</div>
+					<table cellspacing='1' cellpadding='0'>
+						<thead>
+							<tr>
+								<td style='width:40px; '>序号</td>
+								<td>名称</td>
+								<td>数据类型</td>
+								<td>允许空值</td>
+								<td>主键</td>
+								<td>默认值</td>
+								<td>额外信息</td>
+								<td>说明</td>
+							</tr>
+						</thead>
+						
+							<tr>
+								<td style='text-align:center;'>1</td>
+								<td>player_id</td>
+								<td align='center'>bigint(20) unsigned</td>
+								<td align='center'>NO</td>
+								<td align='center'>PRI</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>玩家id</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>2</td>
+								<td>friend_list</td>
+								<td align='center'>longblob</td>
+								<td align='center'>NO</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>好友信息</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>3</td>
+								<td>get_energy_count</td>
+								<td align='center'>int(5)</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>0</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>4</td>
+								<td>del_friend_count</td>
+								<td align='center'>int(5)</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>0</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+					</table>
+				
+					<a name='buff' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：buff</b></div>
+					<div>说明：后台活动表</div>
+					<div>数据列：</div>
+					<table cellspacing='1' cellpadding='0'>
+						<thead>
+							<tr>
+								<td style='width:40px; '>序号</td>
+								<td>名称</td>
+								<td>数据类型</td>
+								<td>允许空值</td>
+								<td>主键</td>
+								<td>默认值</td>
+								<td>额外信息</td>
+								<td>说明</td>
+							</tr>
+						</thead>
+						
+							<tr>
+								<td style='text-align:center;'>1</td>
+								<td>player_id</td>
+								<td align='center'>bigint(20) unsigned</td>
+								<td align='center'>NO</td>
+								<td align='center'>PRI</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>玩家id</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>2</td>
+								<td>data</td>
+								<td align='center'>longblob</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+					</table>
+				
+					<a name='silvermine_cache' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：silvermine_cache</b></div>
+					<div>说明：后台活动表</div>
+					<div>数据列：</div>
+					<table cellspacing='1' cellpadding='0'>
+						<thead>
+							<tr>
+								<td style='width:40px; '>序号</td>
+								<td>名称</td>
+								<td>数据类型</td>
+								<td>允许空值</td>
+								<td>主键</td>
+								<td>默认值</td>
+								<td>额外信息</td>
+								<td>说明</td>
+							</tr>
+						</thead>
+						
+							<tr>
+								<td style='text-align:center;'>1</td>
+								<td>id</td>
+								<td align='center'>bigint(20)</td>
+								<td align='center'>NO</td>
+								<td align='center'>PRI</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>2</td>
+								<td>data</td>
+								<td align='center'>longblob</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+					</table>
+				
+					<a name='active_cache' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：active_cache</b></div>
+					<div>说明：后台活动表</div>
+					<div>数据列：</div>
+					<table cellspacing='1' cellpadding='0'>
+						<thead>
+							<tr>
+								<td style='width:40px; '>序号</td>
+								<td>名称</td>
+								<td>数据类型</td>
+								<td>允许空值</td>
+								<td>主键</td>
+								<td>默认值</td>
+								<td>额外信息</td>
+								<td>说明</td>
+							</tr>
+						</thead>
+						
+							<tr>
+								<td style='text-align:center;'>1</td>
+								<td>id</td>
+								<td align='center'>bigint(20) unsigned</td>
+								<td align='center'>NO</td>
+								<td align='center'>PRI</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>活动id</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>2</td>
+								<td>data</td>
+								<td align='center'>longblob</td>
+								<td align='center'>NO</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>活动公有缓存数据</td>
+							</tr>
+						
+					</table>
+				
+					<a name='pub' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：pub</b></div>
+					<div>说明：后台活动表</div>
+					<div>数据列：</div>
+					<table cellspacing='1' cellpadding='0'>
+						<thead>
+							<tr>
+								<td style='width:40px; '>序号</td>
+								<td>名称</td>
+								<td>数据类型</td>
+								<td>允许空值</td>
+								<td>主键</td>
+								<td>默认值</td>
+								<td>额外信息</td>
+								<td>说明</td>
+							</tr>
+						</thead>
+						
+							<tr>
+								<td style='text-align:center;'>1</td>
+								<td>player_id</td>
+								<td align='center'>bigint(20) unsigned</td>
+								<td align='center'>NO</td>
+								<td align='center'>PRI</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>玩家id</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>2</td>
+								<td>data</td>
+								<td align='center'>longblob</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+					</table>
+				
+					<a name='trade_city' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：trade_city</b></div>
+					<div>说明：后台活动表</div>
+					<div>数据列：</div>
+					<table cellspacing='1' cellpadding='0'>
+						<thead>
+							<tr>
+								<td style='width:40px; '>序号</td>
+								<td>名称</td>
+								<td>数据类型</td>
+								<td>允许空值</td>
+								<td>主键</td>
+								<td>默认值</td>
+								<td>额外信息</td>
+								<td>说明</td>
+							</tr>
+						</thead>
+						
+							<tr>
+								<td style='text-align:center;'>1</td>
+								<td>city_id</td>
+								<td align='center'>int(10)</td>
+								<td align='center'>NO</td>
+								<td align='center'>PRI</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>2</td>
+								<td>data</td>
+								<td align='center'>longblob</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+					</table>
+				
+					<a name='quest' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：quest</b></div>
+					<div>说明：后台活动表</div>
+					<div>数据列：</div>
+					<table cellspacing='1' cellpadding='0'>
+						<thead>
+							<tr>
+								<td style='width:40px; '>序号</td>
+								<td>名称</td>
+								<td>数据类型</td>
+								<td>允许空值</td>
+								<td>主键</td>
+								<td>默认值</td>
+								<td>额外信息</td>
+								<td>说明</td>
+							</tr>
+						</thead>
+						
+							<tr>
+								<td style='text-align:center;'>1</td>
+								<td>player_id</td>
+								<td align='center'>bigint(20) unsigned</td>
+								<td align='center'>NO</td>
+								<td align='center'>PRI</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>玩家id</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>2</td>
+								<td>data</td>
+								<td align='center'>longblob</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+					</table>
+				
+					<a name='active_reward' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：active_reward</b></div>
+					<div>说明：后台活动表</div>
+					<div>数据列：</div>
+					<table cellspacing='1' cellpadding='0'>
+						<thead>
+							<tr>
+								<td style='width:40px; '>序号</td>
+								<td>名称</td>
+								<td>数据类型</td>
+								<td>允许空值</td>
+								<td>主键</td>
+								<td>默认值</td>
+								<td>额外信息</td>
+								<td>说明</td>
+							</tr>
+						</thead>
+						
+							<tr>
+								<td style='text-align:center;'>1</td>
+								<td>player_id</td>
+								<td align='center'>bigint(20) unsigned</td>
+								<td align='center'>NO</td>
+								<td align='center'>PRI</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>玩家id</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>2</td>
+								<td>data</td>
+								<td align='center'>longblob</td>
+								<td align='center'>NO</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>奖励数据</td>
+							</tr>
+						
+					</table>
+				
+					<a name='active' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：active</b></div>
+					<div>说明：后台活动表</div>
+					<div>数据列：</div>
+					<table cellspacing='1' cellpadding='0'>
+						<thead>
+							<tr>
+								<td style='width:40px; '>序号</td>
+								<td>名称</td>
+								<td>数据类型</td>
+								<td>允许空值</td>
+								<td>主键</td>
+								<td>默认值</td>
+								<td>额外信息</td>
+								<td>说明</td>
+							</tr>
+						</thead>
+						
+							<tr>
+								<td style='text-align:center;'>1</td>
+								<td>active_id</td>
+								<td align='center'>bigint(20) unsigned</td>
+								<td align='center'>NO</td>
+								<td align='center'>PRI</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>活动id</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>2</td>
+								<td>start_time</td>
+								<td align='center'>int(11) unsigned</td>
+								<td align='center'>NO</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>活动开始时间</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>3</td>
+								<td>end_time</td>
+								<td align='center'>int(11) unsigned</td>
+								<td align='center'>NO</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>活动结束时间</td>
+							</tr>
+						
+					</table>
+				
+					<a name='sign' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：sign</b></div>
+					<div>说明：后台活动表</div>
+					<div>数据列：</div>
+					<table cellspacing='1' cellpadding='0'>
+						<thead>
+							<tr>
+								<td style='width:40px; '>序号</td>
+								<td>名称</td>
+								<td>数据类型</td>
+								<td>允许空值</td>
+								<td>主键</td>
+								<td>默认值</td>
+								<td>额外信息</td>
+								<td>说明</td>
+							</tr>
+						</thead>
+						
+							<tr>
+								<td style='text-align:center;'>1</td>
+								<td>player_id</td>
+								<td align='center'>int(11)</td>
+								<td align='center'>NO</td>
+								<td align='center'>PRI</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>2</td>
+								<td>data</td>
+								<td align='center'>longblob</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+					</table>
+				
+					<a name='world_boss' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：world_boss</b></div>
+					<div>说明：后台活动表</div>
+					<div>数据列：</div>
+					<table cellspacing='1' cellpadding='0'>
+						<thead>
+							<tr>
+								<td style='width:40px; '>序号</td>
+								<td>名称</td>
+								<td>数据类型</td>
+								<td>允许空值</td>
+								<td>主键</td>
+								<td>默认值</td>
+								<td>额外信息</td>
+								<td>说明</td>
+							</tr>
+						</thead>
+						
+							<tr>
+								<td style='text-align:center;'>1</td>
+								<td>player_id</td>
+								<td align='center'>bigint(12)</td>
+								<td align='center'>NO</td>
+								<td align='center'>PRI</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>2</td>
+								<td>data</td>
+								<td align='center'>longblob</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+					</table>
+				
+					<a name='scene_statistics' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：scene_statistics</b></div>
+					<div>说明：后台活动表</div>
+					<div>数据列：</div>
+					<table cellspacing='1' cellpadding='0'>
+						<thead>
+							<tr>
+								<td style='width:40px; '>序号</td>
+								<td>名称</td>
+								<td>数据类型</td>
+								<td>允许空值</td>
+								<td>主键</td>
+								<td>默认值</td>
+								<td>额外信息</td>
+								<td>说明</td>
+							</tr>
+						</thead>
+						
+							<tr>
+								<td style='text-align:center;'>1</td>
+								<td>player_id</td>
+								<td align='center'>bigint(20) unsigned</td>
+								<td align='center'>NO</td>
+								<td align='center'>PRI</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>玩家id</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>2</td>
+								<td>data</td>
+								<td align='center'>longblob</td>
+								<td align='center'>NO</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>数据</td>
+							</tr>
+						
+					</table>
+				
+					<a name='building' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：building</b></div>
+					<div>说明：后台活动表</div>
+					<div>数据列：</div>
+					<table cellspacing='1' cellpadding='0'>
+						<thead>
+							<tr>
+								<td style='width:40px; '>序号</td>
+								<td>名称</td>
+								<td>数据类型</td>
+								<td>允许空值</td>
+								<td>主键</td>
+								<td>默认值</td>
+								<td>额外信息</td>
+								<td>说明</td>
+							</tr>
+						</thead>
+						
+							<tr>
+								<td style='text-align:center;'>1</td>
+								<td>player_id</td>
+								<td align='center'>bigint(20) unsigned</td>
+								<td align='center'>NO</td>
+								<td align='center'>PRI</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>玩家id</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>2</td>
+								<td>data</td>
+								<td align='center'>longblob</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+					</table>
+				
+					<a name='account' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：account</b></div>
+					<div>说明：后台活动表</div>
+					<div>数据列：</div>
+					<table cellspacing='1' cellpadding='0'>
+						<thead>
+							<tr>
+								<td style='width:40px; '>序号</td>
+								<td>名称</td>
+								<td>数据类型</td>
+								<td>允许空值</td>
+								<td>主键</td>
+								<td>默认值</td>
+								<td>额外信息</td>
+								<td>说明</td>
+							</tr>
+						</thead>
+						
+							<tr>
+								<td style='text-align:center;'>1</td>
+								<td>accountid</td>
+								<td align='center'>int(11)</td>
+								<td align='center'>NO</td>
+								<td align='center'>PRI</td>
+								<td align='center'>None</td>
+								<td align='center'>auto_increment</td>
+								<td>账号id</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>2</td>
+								<td>platform</td>
+								<td align='center'>int(11)</td>
+								<td align='center'>NO</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>平台类型</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>3</td>
+								<td>username</td>
+								<td align='center'>varchar(100)</td>
+								<td align='center'>NO</td>
+								<td align='center'>UNI</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>用户名</td>
+							</tr>
+						
+					</table>
+				
+					<a name='guild' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：guild</b></div>
+					<div>说明：后台活动表</div>
+					<div>数据列：</div>
+					<table cellspacing='1' cellpadding='0'>
+						<thead>
+							<tr>
+								<td style='width:40px; '>序号</td>
+								<td>名称</td>
+								<td>数据类型</td>
+								<td>允许空值</td>
+								<td>主键</td>
+								<td>默认值</td>
+								<td>额外信息</td>
+								<td>说明</td>
+							</tr>
+						</thead>
+						
+							<tr>
+								<td style='text-align:center;'>1</td>
+								<td>guild_id</td>
+								<td align='center'>bigint(20) unsigned</td>
+								<td align='center'>NO</td>
+								<td align='center'>PRI</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>工会id</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>2</td>
+								<td>guild_name</td>
+								<td align='center'>varchar(30)</td>
+								<td align='center'>NO</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>工会名字</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>3</td>
+								<td>guild_icon</td>
+								<td align='center'>int(11)</td>
+								<td align='center'>NO</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>4</td>
+								<td>guild_lv</td>
+								<td align='center'>int(11)</td>
+								<td align='center'>NO</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>工会经验</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>5</td>
+								<td>guild_exp</td>
+								<td align='center'>int(11)</td>
+								<td align='center'>NO</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>6</td>
+								<td>guild_num</td>
+								<td align='center'>int(11)</td>
+								<td align='center'>NO</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>工会最大人数</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>7</td>
+								<td>guild_num_n</td>
+								<td align='center'>int(11)</td>
+								<td align='center'>NO</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>工会当前人数</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>8</td>
+								<td>guild_announcement</td>
+								<td align='center'>longblob</td>
+								<td align='center'>NO</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>工会公告</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>9</td>
+								<td>guild_announcement_time</td>
+								<td align='center'>varchar(200)</td>
+								<td align='center'>NO</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>公告时间</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>10</td>
+								<td>guild_bank</td>
+								<td align='center'>int(11)</td>
+								<td align='center'>NO</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>工会银库</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>11</td>
+								<td>guild_banquet</td>
+								<td align='center'>longblob</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>12</td>
+								<td>guild_statitics</td>
+								<td align='center'>longblob</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>13</td>
+								<td>members_list</td>
+								<td align='center'>longblob</td>
+								<td align='center'>NO</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>工会成员列表</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>14</td>
+								<td>create_time</td>
+								<td align='center'>int(20)</td>
+								<td align='center'>NO</td>
+								<td align='center'></td>
+								<td align='center'>0</td>
+								<td align='center'></td>
+								<td>å…¬ä¼šåˆ›å»ºæ—¶é—´</td>
+							</tr>
+						
+					</table>
+				
+					<a name='item_statistics' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：item_statistics</b></div>
+					<div>说明：后台活动表</div>
+					<div>数据列：</div>
+					<table cellspacing='1' cellpadding='0'>
+						<thead>
+							<tr>
+								<td style='width:40px; '>序号</td>
+								<td>名称</td>
+								<td>数据类型</td>
+								<td>允许空值</td>
+								<td>主键</td>
+								<td>默认值</td>
+								<td>额外信息</td>
+								<td>说明</td>
+							</tr>
+						</thead>
+						
+							<tr>
+								<td style='text-align:center;'>1</td>
+								<td>player_id</td>
+								<td align='center'>bigint(20)</td>
+								<td align='center'>NO</td>
+								<td align='center'>PRI</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>2</td>
+								<td>data</td>
+								<td align='center'>longblob</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+					</table>
+				
+					<a name='science' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：science</b></div>
+					<div>说明：后台活动表</div>
+					<div>数据列：</div>
+					<table cellspacing='1' cellpadding='0'>
+						<thead>
+							<tr>
+								<td style='width:40px; '>序号</td>
+								<td>名称</td>
+								<td>数据类型</td>
+								<td>允许空值</td>
+								<td>主键</td>
+								<td>默认值</td>
+								<td>额外信息</td>
+								<td>说明</td>
+							</tr>
+						</thead>
+						
+							<tr>
+								<td style='text-align:center;'>1</td>
+								<td>player_id</td>
+								<td align='center'>bigint(20)</td>
+								<td align='center'>NO</td>
+								<td align='center'>PRI</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>2</td>
+								<td>data</td>
+								<td align='center'>longblob</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+					</table>
+				
+					<a name='random_reward' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：random_reward</b></div>
+					<div>说明：后台活动表</div>
+					<div>数据列：</div>
+					<table cellspacing='1' cellpadding='0'>
+						<thead>
+							<tr>
+								<td style='width:40px; '>序号</td>
+								<td>名称</td>
+								<td>数据类型</td>
+								<td>允许空值</td>
+								<td>主键</td>
+								<td>默认值</td>
+								<td>额外信息</td>
+								<td>说明</td>
+							</tr>
+						</thead>
+						
+							<tr>
+								<td style='text-align:center;'>1</td>
+								<td>player_id</td>
+								<td align='center'>bigint(20)</td>
+								<td align='center'>NO</td>
+								<td align='center'>PRI</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>2</td>
+								<td>data</td>
+								<td align='center'>longblob</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+					</table>
+				
+					<a name='money_factory' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：money_factory</b></div>
+					<div>说明：后台活动表</div>
+					<div>数据列：</div>
+					<table cellspacing='1' cellpadding='0'>
+						<thead>
+							<tr>
+								<td style='width:40px; '>序号</td>
+								<td>名称</td>
+								<td>数据类型</td>
+								<td>允许空值</td>
+								<td>主键</td>
+								<td>默认值</td>
+								<td>额外信息</td>
+								<td>说明</td>
+							</tr>
+						</thead>
+						
+							<tr>
+								<td style='text-align:center;'>1</td>
+								<td>player_id</td>
+								<td align='center'>bigint(20)</td>
+								<td align='center'>NO</td>
+								<td align='center'>PRI</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>2</td>
+								<td>data</td>
+								<td align='center'>longblob</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+					</table>
+				
+					<a name='bag' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：bag</b></div>
+					<div>说明：后台活动表</div>
+					<div>数据列：</div>
+					<table cellspacing='1' cellpadding='0'>
+						<thead>
+							<tr>
+								<td style='width:40px; '>序号</td>
+								<td>名称</td>
+								<td>数据类型</td>
+								<td>允许空值</td>
+								<td>主键</td>
+								<td>默认值</td>
+								<td>额外信息</td>
+								<td>说明</td>
+							</tr>
+						</thead>
+						
+							<tr>
+								<td style='text-align:center;'>1</td>
+								<td>player_id</td>
+								<td align='center'>bigint(20) unsigned</td>
+								<td align='center'>NO</td>
+								<td align='center'>PRI</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>玩家id</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>2</td>
+								<td>data</td>
+								<td align='center'>longblob</td>
+								<td align='center'>NO</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>数据</td>
+							</tr>
+						
+					</table>
+				
+					<a name='rune' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：rune</b></div>
+					<div>说明：后台活动表</div>
+					<div>数据列：</div>
+					<table cellspacing='1' cellpadding='0'>
+						<thead>
+							<tr>
+								<td style='width:40px; '>序号</td>
+								<td>名称</td>
+								<td>数据类型</td>
+								<td>允许空值</td>
+								<td>主键</td>
+								<td>默认值</td>
+								<td>额外信息</td>
+								<td>说明</td>
+							</tr>
+						</thead>
+						
+							<tr>
+								<td style='text-align:center;'>1</td>
+								<td>player_id</td>
+								<td align='center'>bigint(20)</td>
+								<td align='center'>NO</td>
+								<td align='center'>PRI</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>2</td>
+								<td>data</td>
+								<td align='center'>longblob</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+					</table>
+				
+					<a name='account_power' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：account_power</b></div>
+					<div>说明：后台活动表</div>
+					<div>数据列：</div>
+					<table cellspacing='1' cellpadding='0'>
+						<thead>
+							<tr>
+								<td style='width:40px; '>序号</td>
+								<td>名称</td>
+								<td>数据类型</td>
+								<td>允许空值</td>
+								<td>主键</td>
+								<td>默认值</td>
+								<td>额外信息</td>
+								<td>说明</td>
+							</tr>
+						</thead>
+						
+							<tr>
+								<td style='text-align:center;'>1</td>
+								<td>accountid</td>
+								<td align='center'>int(11)</td>
+								<td align='center'>NO</td>
+								<td align='center'>MUL</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>账号id</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>2</td>
+								<td>power</td>
+								<td align='center'>int(11)</td>
+								<td align='center'>NO</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td>权限</td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>3</td>
+								<td>power_lev</td>
+								<td align='center'>int(11)</td>
+								<td align='center'>NO</td>
+								<td align='center'></td>
+								<td align='center'>1</td>
+								<td align='center'></td>
+								<td>权限等级</td>
+							</tr>
+						
+					</table>
+				
+					<a name='college' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：college</b></div>
+					<div>说明：后台活动表</div>
+					<div>数据列：</div>
+					<table cellspacing='1' cellpadding='0'>
+						<thead>
+							<tr>
+								<td style='width:40px; '>序号</td>
+								<td>名称</td>
+								<td>数据类型</td>
+								<td>允许空值</td>
+								<td>主键</td>
+								<td>默认值</td>
+								<td>额外信息</td>
+								<td>说明</td>
+							</tr>
+						</thead>
+						
+							<tr>
+								<td style='text-align:center;'>1</td>
+								<td>player_id</td>
+								<td align='center'>bigint(20)</td>
+								<td align='center'>NO</td>
+								<td align='center'>PRI</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>2</td>
+								<td>data</td>
+								<td align='center'>longblob</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+					</table>
+				
+					<a name='trade_player' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：trade_player</b></div>
+					<div>说明：后台活动表</div>
+					<div>数据列：</div>
+					<table cellspacing='1' cellpadding='0'>
+						<thead>
+							<tr>
+								<td style='width:40px; '>序号</td>
+								<td>名称</td>
+								<td>数据类型</td>
+								<td>允许空值</td>
+								<td>主键</td>
+								<td>默认值</td>
+								<td>额外信息</td>
+								<td>说明</td>
+							</tr>
+						</thead>
+						
+							<tr>
+								<td style='text-align:center;'>1</td>
+								<td>player_id</td>
+								<td align='center'>bigint(20)</td>
+								<td align='center'>NO</td>
+								<td align='center'>PRI</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>2</td>
+								<td>data</td>
+								<td align='center'>longblob</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+					</table>
+				
+					<a name='trade_city_player' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：trade_city_player</b></div>
+					<div>说明：后台活动表</div>
+					<div>数据列：</div>
+					<table cellspacing='1' cellpadding='0'>
+						<thead>
+							<tr>
+								<td style='width:40px; '>序号</td>
+								<td>名称</td>
+								<td>数据类型</td>
+								<td>允许空值</td>
+								<td>主键</td>
+								<td>默认值</td>
+								<td>额外信息</td>
+								<td>说明</td>
+							</tr>
+						</thead>
+						
+							<tr>
+								<td style='text-align:center;'>1</td>
+								<td>player_id</td>
+								<td align='center'>bigint(20)</td>
+								<td align='center'>NO</td>
+								<td align='center'>PRI</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>2</td>
+								<td>city_id</td>
+								<td align='center'>int(10)</td>
+								<td align='center'>NO</td>
+								<td align='center'>PRI</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>3</td>
+								<td>data</td>
+								<td align='center'>longblob</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+					</table>
+				
+					<a name='fief' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：fief</b></div>
+					<div>说明：后台活动表</div>
+					<div>数据列：</div>
+					<table cellspacing='1' cellpadding='0'>
+						<thead>
+							<tr>
+								<td style='width:40px; '>序号</td>
+								<td>名称</td>
+								<td>数据类型</td>
+								<td>允许空值</td>
+								<td>主键</td>
+								<td>默认值</td>
+								<td>额外信息</td>
+								<td>说明</td>
+							</tr>
+						</thead>
+						
+							<tr>
+								<td style='text-align:center;'>1</td>
+								<td>player_id</td>
+								<td align='center'>bigint(20)</td>
+								<td align='center'>NO</td>
+								<td align='center'>PRI</td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+							<tr>
+								<td style='text-align:center;'>2</td>
+								<td>data</td>
+								<td align='center'>longblob</td>
+								<td align='center'>YES</td>
+								<td align='center'></td>
+								<td align='center'>None</td>
+								<td align='center'></td>
+								<td></td>
+							</tr>
+						
+					</table>
+				
+			</div>
+		</body>
+
+</html>

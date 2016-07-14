@@ -1,0 +1,39 @@
+version: 1
+disable_existing_loggers: false
+
+
+formatters:
+  simple:
+    format: '%(asctime)s,%(levelname)s,%(message)s'
+
+
+handlers:
+  console:
+    class: logging.StreamHandler
+    level: DEBUG
+    formatter: simple
+    stream: ext://sys.stdout
+  all:
+    class: util.MakeFileHandler.MakeFileHandler
+    level: INFO
+    formatter: simple
+    when: midnight
+    filename: ./logs/logging.log
+    # filename: ./logging.log
+  # msg:
+  #   class: util.MakeFileHandler.MakeFileHandler
+  #   level: INFO
+  #   formatter: simple
+  #   when: midnight
+  #   filename: ./logs/msg_logging.log
+
+# loggers:
+#   msg:
+#     level: INFO
+#     handlers: [ msg ]
+#     propagate: false
+
+root:
+  level: INFO
+  handlers: [ all,console ]
+  propagate: false
