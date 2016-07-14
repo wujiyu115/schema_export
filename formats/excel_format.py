@@ -13,12 +13,15 @@ xlutils : both xlrd and xlwt
 from xlrd import open_workbook
 from xlwt import Workbook,easyxf
 from xlutils.copy import copy
+from base_format import BaseFormat
 
 
-class ExcelUtil():
+class ExcelFormat(BaseFormat):
 
 	def __init__(self, filename):
-		self.filename = filename
+		self.suffix = "xls" #后缀
+		super(ExcelFormat, self).__init__(filename)
+
 		self.book = Workbook(encoding='utf-8')
 
 
@@ -55,6 +58,6 @@ class ExcelUtil():
 		return rowx
 
 	def save(self):
-		self.book.save(self.filename)
+		self.book.save(self.outname)
 
 

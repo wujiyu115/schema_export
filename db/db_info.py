@@ -2,9 +2,9 @@
 # @Author: wujiyu115
 # @Date:   2016-07-12 18:56:20
 # @Last Modified by:   wujiyu115
-# @Last Modified time: 2016-07-14 10:29:28
-from db_client import DictClient
-
+# @Last Modified time: 2016-07-14 15:00:15
+from db_client import mymysqldb
+from configutil import ConfigUtil
 
 class  DbBean(object):
 	def __init__(self):
@@ -23,7 +23,8 @@ class ColumnBean(object):
 
 class DbData(object):
 	def __init__(self):
-		self.client = DictClient()
+		database_info = ConfigUtil.instance().get_mysql_database()
+		self.client = mymysqldb(*database_info)
 		self.ignore_db = ["information_schema", "mysql", "performance_schema"]
 
 

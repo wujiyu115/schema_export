@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import logging
-import time
+import time,os
 from fileutil import mkdir_p
 
 

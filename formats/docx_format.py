@@ -2,18 +2,19 @@
 # @Author: wujiyu115
 # @Date:   2016-07-13 14:23:29
 # @Last Modified by:   wujiyu115
-# @Last Modified time: 2016-07-13 14:55:35
+# @Last Modified time: 2016-07-14 18:14:43
 
 
 from docx import Document
 from docx.shared import Inches
+from base_format import BaseFormat
 
 
-
-class DocUtil():
+class DocFormat(BaseFormat):
 
 	def __init__(self, filename):
-		self.filename = filename
+		self.suffix = "doc" #后缀
+		super(DocFormat, self).__init__(filename)
 		self.document = Document()
 
 
@@ -33,7 +34,10 @@ class DocUtil():
 			for item in items:
 				row_cells = table.add_row().cells
 				for x in xrange(0,head_len):
-					row_cells[x].text = str(item[x])
+					txt =  item[x]
+					if txt is None:
+						txt = ""
+					row_cells[x].text = txt
 
 	def save(self):
-		self.document.save(self.filename)
+		self.document.save(self.outname)

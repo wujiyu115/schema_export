@@ -65,7 +65,6 @@ python export.py
 ### 配置说明
 + `configs/config.conf`日志级别在调试完成后设置为`INFO`级别,减少调试输出
 
-SHOW TABLE STATUS
 
 ### 任务表
 - [x] mysql
@@ -76,4 +75,9 @@ SHOW TABLE STATUS
 - [ ] csv
 - [ ] 表注释
 - [x] 字段注释
-- [ ]  选择数据库导出
+- [x]  配置化
+- [x]  log
+- [x]  outputdir
+- [x]  pdf中文乱码
+- [x]  word None
+- [x]  选择数据库导出

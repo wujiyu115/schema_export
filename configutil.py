@@ -3,7 +3,7 @@
 # @Author: wujiyu
 # @Date:   2016-03-15 20:43:04
 # @Last Modified by:   wujiyu115
-# @Last Modified time: 2016-06-21 11:15:06
+# @Last Modified time: 2016-07-14 14:53:34
 import threading
 import os,ConfigParser
 
@@ -42,13 +42,8 @@ class ConfigUtil(object):
 					else:
 						setattr(self,p,str(value).strip())
 
-		if self.vip_configs!=None:
-			self.vip_configs = str.split(self.vip_configs,",")
 
-	def getProcesses(self):
-		return self.processes
-
-	def getDBConfig(self):
-		return self.host,self.user,self.passwd,self.db,self.port
+	def get_mysql_database(self):
+		return self.m_dbhost,self.m_dbuser,self.m_dbpassword,self.m_dbname,self.m_dbport
 
 ConfigUtil.instance().setConfigFile()
