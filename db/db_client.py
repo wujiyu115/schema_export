@@ -81,13 +81,6 @@ class mymysqldb(object):
 
 	# 	return None
 
-	def execute(self, query, args=None):
-		conn = self.get_conn()
-		cur =conn.cursor()
-		cur.execute(query, args)
-		rows = cur.fetchall()
-		cur.close()
-		return rows
 
 	def escape_string(self, string):
 		result = ''
@@ -127,3 +120,14 @@ class mymysqldb(object):
 	def close(self):
 		if self.conn:
 			self.conn.close()
+
+	def execute(self, query, args=None):
+		conn = self.get_conn()
+		cur =conn.cursor()
+		cur.execute(query, args)
+		rows = cur.fetchall()
+		cur.close()
+		return rows
+
+	def get_db_name(self):
+		return self.db

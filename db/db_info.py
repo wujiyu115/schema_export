@@ -2,7 +2,7 @@
 # @Author: wujiyu115
 # @Date:   2016-07-12 18:56:20
 # @Last Modified by:   wujiyu115
-# @Last Modified time: 2016-07-14 15:00:15
+# @Last Modified time: 2016-07-14 19:12:48
 from db_client import mymysqldb
 from configutil import ConfigUtil
 
@@ -105,6 +105,10 @@ class DbData(object):
 	def close(self):
 		if self.client:
 			self.client.close()
+
+
+	def get_db_name(self):
+		return self.client.get_db_name()
 
 class MySqlDbData(DbData):
 	"""docstring for MySqlDbData"""

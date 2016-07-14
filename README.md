@@ -4,14 +4,19 @@
 `schema_export`是一个导出数据库结构的工具,支持多种格式
 
 ### 支持格式
-+ xls
-+ docx
-+ pdf
-+ html
++ xls  
+![](assets/xls.png)
++ docx  
+![](assets/docx.png)
++ pdf  
+![](assets/pdf.png)
++ html  
+![](assets/html.png)
 + csv
 
 ### 支持数据库
 + mysql
+
 
 ## 使用:
 ### 安装python2.7
@@ -57,6 +62,7 @@ python export.py
 ├── formats #导出格式
 ├── logs   #日志目录
 ├── templates   #模板
+├── output   #输出目录
 ├── export.py    #文件入口
 ├── requirements.txt    #依赖
 ├── README.md     #说明文件
@@ -72,8 +78,7 @@ python export.py
 - [x] docx
 - [x] pdf
 - [x] html
-- [ ] csv
-- [ ] 表注释
+- [x] csv
 - [x] 字段注释
 - [x]  配置化
 - [x]  log
@@ -81,3 +86,4 @@ python export.py
 - [x]  pdf中文乱码
 - [x]  word None
 - [x]  选择数据库导出
+- [ ]  表注释
