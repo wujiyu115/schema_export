@@ -1,7 +1,0 @@
-MySQLdb
-python-docx
-xlrd
-xlwt
-reportlab
-Jinja2
-PyYAML

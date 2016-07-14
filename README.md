@@ -49,13 +49,17 @@ python export.py
 
 ## 内容说明
 ```
-├── README.md #说明文件
 ├── configs
 │   ├── config.conf #配置文件
 │   └──  logging.yaml
-├── export.py
+├── db #获取数据
+├── export #导出类
+├── formats #导出格式
 ├── logs   #日志目录
-├── requirements.txt # 依赖
+├── templates   #模板
+├── export.py    #文件入口
+├── requirements.txt    #依赖
+├── README.md     #说明文件
 ```
 
 ### 配置说明
@@ -71,5 +75,5 @@ SHOW TABLE STATUS
 - [x] html
 - [ ] csv
 - [ ] 表注释
-- [x ] 字段注释
+- [x] 字段注释
 - [ ]  选择数据库导出

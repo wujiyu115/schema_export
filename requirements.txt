@@ -1,0 +1,8 @@
+MySQL-python==1.2.5
+python-docx==0.8.6
+xlrd==0.9.4
+xlutils==2.0.0
+xlwt==1.1.2
+reportlab==3.3.0
+Jinja2==2.8
+PyYAML==3.11
