@@ -54,18 +54,18 @@
 							<td>说明</td>
 						</tr>
 					</thead>
-					{% for key, value in recordset.iteritems()%}
+					{% for table, table_info in recordset.iteritems()%}
 						<tr>
 							<td style='text-align:center;'>{{ loop.index }}</td>
-							<td><a href='#{{ key }}'>{{ key }}</a></td>
-							<td>后台活动表</td>
+							<td><a href='#{{ table }}'>{{ table }}</a></td>
+							<td>{{table_info.table_desc}}</td>
 						</tr>
 					{% endfor %}
 				</table>
-				{% for key, columns in recordset.iteritems()%}
-					<a name='{{ key }}' />
-					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：{{ key }}</b></div>
-					<div>说明：后台活动表</div>
+				{% for table, table_info in recordset.iteritems()%}
+					<a name='{{ table }}' />
+					<div style='margin-top:30px;'><a href='#index' style='float:right; margin-top:6px;'>返回目录</a><b>表名：{{ table }}</b></div>
+					<div>说明：{{table_info.table_desc}}</div>
 					<div>数据列：</div>
 					<table cellspacing='1' cellpadding='0'>
 						<thead>
@@ -80,7 +80,7 @@
 								<td>说明</td>
 							</tr>
 						</thead>
-						{% for  column in columns%}
+						{% for  column in table_info.columns%}
 							<tr>
 								<td style='text-align:center;'>{{ loop.index }}</td>
 								<td>{{ column[0] }}</td>

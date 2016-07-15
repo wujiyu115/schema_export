@@ -2,7 +2,7 @@
 # @Author: wujiyu115
 # @Date:   2016-07-12 18:56:20
 # @Last Modified by:   wujiyu115
-# @Last Modified time: 2016-07-14 19:12:48
+# @Last Modified time: 2016-07-15 09:34:44
 from db_client import mymysqldb
 from configutil import ConfigUtil
 
@@ -12,13 +12,13 @@ class  DbBean(object):
 		self.tables =  {}
 
 class  TableBean(object):
-	def __init__(self):
-		self.table_desc = None
-		self.columns =  {}
+	def __init__(self,table,table_desc,columns):
+		self.table = table #表名
+		self.table_desc = table_desc #表注释
+		self.columns =  columns #表字段信息
 
 class ColumnBean(object):
 	def __init__(self):
-		self.column_name = None
 		self.column_name = None
 
 class DbData(object):
@@ -47,7 +47,7 @@ class DbData(object):
 		if database:
 			self.client.execute("use %s" % database)
 			return [tables[0] for tables in self.client.execute("show tables")]
-
+		return None
 
 	## @brief      得到所有的列
 	## @param      self   The object
@@ -63,40 +63,53 @@ class DbData(object):
 	## @return     The column.
 	def getColumn(self, table):
 		if table:
-			return [list(column) for column in self.client.execute("SHOW FULL FIELDS FROM %s" % table)]
+			columns =  [list(column) for column in self.client.execute("SHOW FULL FIELDS FROM %s" % table)]
+			for column in columns:
+				column.pop(7) #privileges
+				column.pop(2) #collation
+			return columns
+		return None
 
 
 	## @brief      得到表信息,最后一列是注释
 	## @param      self   The object
 	## @return     The tableinfo.
 	def getTableInfo(self):
-			return [list(tabelinfo) for tabelinfo in self.client.execute("SHOW TABLE STATUS ")]
+		tableinfo_result = {}
+		tabelinfos =  [list(tabelinfo) for tabelinfo in self.client.execute("SHOW TABLE STATUS ")]
+		for tabelinfo in tabelinfos:
+			tableinfo_result[tabelinfo[0]] = tabelinfo[-1]
+		return tableinfo_result
 
 	## @brief      得到全部数据
 	## @param      self   The object
-	## @param      sheet  The sheet
+	## @param      dbname  The dbname
 	## @return     The datas.
 	'''
-	{'two':
-	 [['ID', 'int(11)', 'NO', 'PRI', 'NULL', 'auto_increment', 'one ID'],
-	 ['NAME', 'varchar(128)', 'NO', '', 'NULL', '', ''],
-	 ['DATE', 'datetime', 'NO', '', 'NULL', '', '']],
-	 'one':
-	 [['ID', 'int(11)', 'NO', 'PRI', 'NULL', 'auto_increment', 'one ID'],
-	 ['NAME', 'varchar(128)', 'NO', '', 'NULL', '', ''],
-	 ['DATE', 'datetime', 'NO', '', 'NULL', '', '']]}
+	{
+	'two':
+		{
+			"table_desc":"table_desc",
+			"table":"table",
+			"columns":
+			 [
+				 ['ID', 'int(11)', 'NO', 'PRI', 'NULL', 'auto_increment', 'one ID'],
+				 ['NAME', 'varchar(128)', 'NO', '', 'NULL', '', ''],
+				 ['DATE', 'datetime', 'NO', '', 'NULL', '', '']],
+			 ]
+		}
+	}
 	'''
-	def getDatas(self, sheet):
+	def getDatas(self, dbname):
 		datas = {}
-		if sheet:
-			tables = self.getTable(sheet)
-			if tables:
-				for table in tables:
-					columns = self.getColumn(table)
-					for column in columns:
-						column.pop(7) #privileges
-						column.pop(2) #collation
-					datas[table] = columns
+		tables = self.getTable(dbname)
+		tablesinfos = self.getTableInfo()
+		for table in tables or []:
+			columns = self.getColumn(table)
+			for column in tablesinfos:
+				table_desc = tablesinfos[table]
+				tb = TableBean(table,table_desc,columns)
+			datas[table] = tb
 		return datas
 
 	## @brief    关闭数据库连接

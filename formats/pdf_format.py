@@ -2,7 +2,7 @@
 # @Author: wujiyu115
 # @Date:   2016-07-13 15:03:26
 # @Last Modified by:   wujiyu115
-# @Last Modified time: 2016-07-14 17:42:16
+# @Last Modified time: 2016-07-15 10:19:03
 import os
 
 from reportlab.lib import fonts,colors
@@ -26,21 +26,23 @@ fonts.addMapping(ttfname, 0, 1, ttfname)
 
 class PdfFormat(BaseFormat):
 
-	def __init__(self, filename):
+	def __init__(self, filename,headings):
 		self.suffix = "pdf" #后缀
-		super(PdfFormat, self).__init__(filename)
+		super(PdfFormat, self).__init__(filename,headings)
 
 		self.doc = SimpleDocTemplate(self.outname, pagesize=letter)
 		self.elements = []
 
 
-	def write(self,  headings, data):
+	def write(self,  data):
+		super(PdfFormat, self).write(data)
+		headings= self.headings
 		styles=getSampleStyleSheet()
 		styles.add(ParagraphStyle(name='Justify', alignment=TA_CENTER))
 		styles['Justify'].fontName =ttfname
 		head_len = len(headings)
-		for db_name,items in data.iteritems():
-			items.insert(0,headings)
+		for db_name,table_info in data.iteritems():
+			items = table_info.columns
 			rows = len(items)
 			t=Table(items,head_len*[1*inch], rows*[0.3*inch])
 			t.setStyle(TableStyle([
@@ -52,7 +54,10 @@ class PdfFormat(BaseFormat):
 					('BOX', (0,0), (-1,-1), 0.25, colors.black),
 					]))
 			self.elements.append(Spacer(1, 20))
-			self.elements.append(Paragraph(db_name, styles["Justify"]))
+			table_caption = db_name
+			if table_info.table_desc   :
+				table_caption = '%s(%s)'%(db_name,table_info.table_desc)
+			self.elements.append(Paragraph(table_caption, styles["Justify"]))
 			self.elements.append(Spacer(1, 20))
 			self.elements.append(t)
 

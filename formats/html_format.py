@@ -2,7 +2,7 @@
 # @Author: wujiyu115
 # @Date:   2016-07-13 20:27:03
 # @Last Modified by:   wujiyu115
-# @Last Modified time: 2016-07-14 16:10:55
+# @Last Modified time: 2016-07-15 09:56:27
 import os
 from base_format import BaseFormat
 from jinja2 import Environment, FileSystemLoader
@@ -17,17 +17,20 @@ TEMPLATE_ENVIRONMENT = Environment(
 
 class HtmlFormat(BaseFormat):
 
-	def __init__(self, filename):
+	def __init__(self, filename,headings):
 		self.suffix = "html" #后缀
-		super(HtmlFormat, self).__init__(filename)
+		super(HtmlFormat, self).__init__(filename,headings)
 
 		self.html_data = None
 
 	def render_template(self,template_filename, context):
 		return TEMPLATE_ENVIRONMENT.get_template(template_filename).render(context)
 
+	def handle_data(self,data):
+		pass
 
-	def write(self,  headings, context):
+	def write(self,   context):
+		super(HtmlFormat, self).write(context)
 		self.html_data = self.render_template('teamplate.html', context)
 
 	def save(self):

@@ -86,4 +86,4 @@ python export.py
 - [x]  pdf中文乱码
 - [x]  word None
 - [x]  选择数据库导出
-- [ ]  表注释
+- [x]  表注释

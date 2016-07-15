@@ -2,7 +2,7 @@
 # @Author: wujiyu115
 # @Date:   2016-07-13 19:58:14
 # @Last Modified by:   wujiyu115
-# @Last Modified time: 2016-07-14 19:34:43
+# @Last Modified time: 2016-07-15 09:57:12
 from formats.docx_format import DocFormat
 from formats.excel_format import ExcelFormat
 from formats.html_format import HtmlFormat
@@ -40,13 +40,13 @@ class XlsExport(BaseExport):
 		super(XlsExport, self).__init__(datasource)
 
 	def export_output(self,outfilename,dbname):
-		entu = ExcelFormat(outfilename)
+		entu = ExcelFormat(outfilename,self.headings)
 		sheets =[dbname]
 		datas = {}
 		for sheet in sheets:
 			datas =self.datasource.getDatas(sheet)
 			sheet = entu.addSheet(sheet)
-			entu.write(sheet, self.headings, datas)
+			entu.write(sheet, datas)
 		self.datasource.close()
 		entu.save()
 
@@ -56,10 +56,10 @@ class DocExport(BaseExport):
 		super(DocExport, self).__init__(datasource)
 
 	def export_output(self,outfilename,dbname):
-		doc = DocFormat(outfilename)
+		doc = DocFormat(outfilename,self.headings)
 		recordset =self.datasource.getDatas(dbname)
 		self.datasource.close()
-		doc.write(self.headings,recordset)
+		doc.write(recordset)
 		doc.save()
 
 class HtmlExport(BaseExport):
@@ -68,7 +68,7 @@ class HtmlExport(BaseExport):
 		super(HtmlExport, self).__init__(datasource)
 
 	def export_output(self,outfilename,dbname):
-		htmlformat = HtmlFormat(outfilename)
+		htmlformat = HtmlFormat(outfilename,self.headings)
 		recordset =self.datasource.getDatas(dbname)
 		self.datasource.close()
 		context = {
@@ -76,7 +76,7 @@ class HtmlExport(BaseExport):
 			'recordset': recordset,
 			'headings':self.headings
 		}
-		htmlformat.write(self.headings,context)
+		htmlformat.write(context)
 		htmlformat.save()
 
 class PdfExport(BaseExport):
@@ -85,10 +85,10 @@ class PdfExport(BaseExport):
 		super(PdfExport, self).__init__(datasource)
 
 	def export_output(self,outfilename,dbname):
-		doc = PdfFormat(outfilename)
+		doc = PdfFormat(outfilename,self.headings)
 		recordset =self.datasource.getDatas(dbname)
 		self.datasource.close()
-		doc.write(self.headings,recordset)
+		doc.write(recordset)
 		doc.save()
 
 class  CSVExport(BaseExport):
@@ -97,10 +97,10 @@ class  CSVExport(BaseExport):
 		super(CSVExport, self).__init__(datasource)
 
 	def export_output(self,outfilename,dbname):
-		doc = CSVFormat(outfilename)
+		doc = CSVFormat(outfilename,self.headings)
 		recordset =self.datasource.getDatas(dbname)
 		self.datasource.close()
-		doc.write(self.headings,recordset)
+		doc.write(recordset)
 		doc.save()
 
 
