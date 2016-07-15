@@ -87,3 +87,4 @@ python export.py
 - [x]  word None
 - [x]  选择数据库导出
 - [x]  表注释
+- [x]  Wrap text in a table reportlab

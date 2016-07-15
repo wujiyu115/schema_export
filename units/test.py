@@ -2,12 +2,64 @@
 # @Author: wujiyu115
 # @Date:   2016-07-13 19:55:13
 # @Last Modified by:   wujiyu115
-# @Last Modified time: 2016-07-15 10:13:33
+# @Last Modified time: 2016-07-15 17:32:21
 
+import Tkinter
+import tkMessageBox
 
-# import Tkinter
 # top = Tkinter.Tk()
-# # 进入消息循环
+
+# def helloCallBack():
+#    tkMessageBox.showinfo( "Hello Python", "Hello World")
+
+# B = Tkinter.Button(top, text ="Hello,Python!", command = helloCallBack)
+
+# B.pack()
 # top.mainloop()
-word = ''
-print(len(word)==0)
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import A4, cm
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.platypus import Paragraph, Table, TableStyle
+from reportlab.lib.enums import TA_JUSTIFY, TA_LEFT, TA_CENTER
+from reportlab.lib import colors
+
+width, height = A4
+styles = getSampleStyleSheet()
+styleN = styles["BodyText"]
+styleN.alignment = TA_LEFT
+styleBH = styles["Normal"]
+styleBH.alignment = TA_CENTER
+
+def coord(x, y, unit=1):
+	x, y = x * unit, height -  y * unit
+	return x, y
+
+# Headers
+hdescrpcion = Paragraph('''<b>descrpcion</b>''', styleBH)
+hpartida = Paragraph('''<b>partida</b>''', styleBH)
+hcandidad = Paragraph('''<b>candidad</b>''', styleBH)
+hprecio_unitario = Paragraph('''<b>precio_unitario</b>''', styleBH)
+hprecio_total = Paragraph('''<b>precio_total</b>''', styleBH)
+
+# Texts
+descrpcion = Paragraph('long paragraph', styleN)
+partida = Paragraph('1', styleN)
+candidad = Paragraph('120', styleN)
+precio_unitario = Paragraph('$52ddddddddddddddddddddsdf.00', styleN)
+precio_total = Paragraph('$6240fsdfdddddddddddddsaaaaaaaaaaadsfdf.00', styleN)
+
+data= [[hdescrpcion, hcandidad,hcandidad, hprecio_unitario, hprecio_total],
+	   [partida, candidad, descrpcion, precio_unitario, precio_total]]
+
+table = Table(data, colWidths=[2.05 * cm, 2.7 * cm, 5 * cm,
+							   3* cm, 3 * cm])
+
+table.setStyle(TableStyle([
+					   ('INNERGRID', (0,0), (-1,-1), 0.25, colors.black),
+					   ('BOX', (0,0), (-1,-1), 0.25, colors.black),
+					   ]))
+
+c = canvas.Canvas("a.pdf", pagesize=A4)
+table.wrapOn(c, width, height)
+table.drawOn(c, *coord(1.8, 9.6, cm))
+c.save()

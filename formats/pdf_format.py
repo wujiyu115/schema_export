@@ -2,7 +2,7 @@
 # @Author: wujiyu115
 # @Date:   2016-07-13 15:03:26
 # @Last Modified by:   wujiyu115
-# @Last Modified time: 2016-07-15 10:19:03
+# @Last Modified time: 2016-07-15 18:20:38
 import os
 
 from reportlab.lib import fonts,colors
@@ -15,6 +15,7 @@ from reportlab.pdfbase.ttfonts import TTFont
 
 from base_format import BaseFormat
 from configutil import ConfigUtil
+
 
 # ttf=os.path.join(os.getcwd(), 'templates',"simsun.ttf")
 ttf=ConfigUtil.instance().pdfttf
@@ -41,10 +42,23 @@ class PdfFormat(BaseFormat):
 		styles.add(ParagraphStyle(name='Justify', alignment=TA_CENTER))
 		styles['Justify'].fontName =ttfname
 		head_len = len(headings)
-		for db_name,table_info in data.iteritems():
+
+		styleBH = styles['Justify']
+
+
+
+		for table_name,table_info in data.iteritems():
 			items = table_info.columns
 			rows = len(items)
-			t=Table(items,head_len*[1*inch], rows*[0.3*inch])
+
+			pargraphs = []
+			for column in items:
+				pargraph_col = []
+				for column_data in column:
+					pargraph_col.append(Paragraph(column_data or '', styleBH))
+					pass
+				pargraphs.append(pargraph_col)
+			t=Table(pargraphs,head_len*[1*inch])
 			t.setStyle(TableStyle([
 					('FONT', (0,0), (-1,-1),ttfname),
 					('FONTSIZE', (0, 0), (-1, -1), 7),
@@ -54,9 +68,9 @@ class PdfFormat(BaseFormat):
 					('BOX', (0,0), (-1,-1), 0.25, colors.black),
 					]))
 			self.elements.append(Spacer(1, 20))
-			table_caption = db_name
+			table_caption = table_name
 			if table_info.table_desc   :
-				table_caption = '%s(%s)'%(db_name,table_info.table_desc)
+				table_caption = '%s(%s)'%(table_name,table_info.table_desc)
 			self.elements.append(Paragraph(table_caption, styles["Justify"]))
 			self.elements.append(Spacer(1, 20))
 			self.elements.append(t)
